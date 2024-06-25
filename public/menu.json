@@ -436,7 +436,7 @@
         "name": "Fish Parmentier",
         "recipe": "Sautéed breaded veal escalope with watercress, lemon and veal jus.",
         "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-8-370x247.jpg",
-        "category": "soup",
+        "category": "drinks",
         "price": 9.5
     },
     {
@@ -452,7 +452,7 @@
         "name": "Tuna Niçoise",
         "recipe": "Warm goats cheese and roasted vegetable salad with black olive tapenade crostini",
         "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
-        "category": "soup",
+        "category": "drinks",
         "price": 10.5
     }
 ]
