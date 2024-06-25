@@ -3,7 +3,7 @@ const FoodCard = ({ item }) => {
 
   return (
     <div>
-      <div className="bg-base-100 shadow-xl rounded-none flex flex-col">
+      <div className="bg-base-100 shadow-md rounded-none flex flex-col">
         <figure className="relative">
           <img className="w-full" src={image} alt="" />
           <p className="p-1 bg-slate-900 text-white w-20 absolute top-4 right-4">${price}</p>
