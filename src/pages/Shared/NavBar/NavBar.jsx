@@ -3,8 +3,8 @@ import logo from '../../../assets/logo.png'
 
 const NavBar = () => {
     const navLinks = <>
-     <li><NavLink to="/">Item 1</NavLink></li>
-     <li><NavLink to="/2">Item 2</NavLink></li>
+     <li><NavLink to="/">Home</NavLink></li>
+     <li><NavLink to="/menu">Our Menu</NavLink></li>
      <li><NavLink to="/3">Item 3</NavLink></li>
      <li><NavLink to="/4">Item 4</NavLink></li>
     </>
