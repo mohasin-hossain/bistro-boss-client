@@ -5,11 +5,15 @@ import coverImg from "../../../assets/order/order.jpg";
 import "react-tabs/style/react-tabs.css";
 import { useState } from "react";
 import useMenu from "../../../hooks/useMenu";
-import FoodCard from "../../Shared/FoodCard/FoodCard";
 import OrderTab from "../OrderTab/OrderTab";
+import { useParams } from "react-router-dom";
 
 const Order = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const categories = ["salad", "pizza", "soups", "desserts", "drinks"];
+  const { category } = useParams();
+  const initialIndex = categories.indexOf(category);
+  const [tabIndex, setTabIndex] = useState(initialIndex);
+
   const [menu] = useMenu();
   const desserts = menu.filter((item) => item.category === "dessert");
   const pizzas = menu.filter((item) => item.category === "pizza");
