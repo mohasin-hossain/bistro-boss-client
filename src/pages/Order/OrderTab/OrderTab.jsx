@@ -1,7 +1,6 @@
 import FoodCard from "../../Shared/FoodCard/FoodCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import "./OrderTab.css";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -36,11 +35,11 @@ const OrderTab = ({ foods }) => {
         navigation={true}
         mousewheel={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper relative"
+        className="mySwiper"
       >
         {chunkedFoods.map((slideFoods, index) => (
-          <SwiperSlide key={index} className="mb-16">
-            <div className="grid grid-cols-3 gap-4 mt-8">
+          <SwiperSlide key={index} className="mb-16 px-16">
+            <div className="grid md:grid-cols-3 gap-4 mt-8">
               {slideFoods.map((item) => (
                 <FoodCard key={item._id} item={item}></FoodCard>
               ))}

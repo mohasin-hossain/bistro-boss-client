@@ -29,7 +29,7 @@ const Order = () => {
         subTitle="Would you like to try a dish?˝"
       ></Cover>
 
-      <div className="max-w-7xl mx-auto px-10 my-8 text-center">
+      <div className="max-w-7xl mx-auto my-8 text-center">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>Salad</Tab>
