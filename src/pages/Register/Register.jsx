@@ -1,26 +1,32 @@
+import { Link } from "react-router-dom";
 import RegisterPageImg from "../../assets/others/authentication1.png";
+import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const handleRegister = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, email, password);
-      };
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
-
-    return (
-        <div className="bg-form-image">
+  return (
+    <>
+      <Helmet>
+        <title>Bistro Boss | Register</title>
+      </Helmet>
+      <div className="bg-form-image">
         <div className="max-w-7xl mx-auto px-10 flex items-center justify-center min-h-screen">
           <div className="md:flex md:flex-row-reverse items-center justify-center p-12 border-2 shadow-md bg-form-image">
             <div className="md:w-1/2">
               <img src={RegisterPageImg} alt="" />
             </div>
             <div className="md:w-1/2">
-              <form onSubmit={handleRegister} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <h1 className="text-3xl font-bold text-center">Register</h1>
                 <div className="form-control">
                   <label className="label">
@@ -28,11 +34,27 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    {...register("name", {
+                      required: true,
+                      minLength: 6,
+                      maxLength: 12,
+                    })}
                     placeholder="Type here"
-                    name="name"
                     className="input input-bordered"
-                    required
                   />
+                  {errors.name?.type === "required" && (
+                    <p className="text-red-600">Name is required</p>
+                  )}
+                  {errors.name?.type === "minLength" && (
+                    <p className="text-red-600">
+                      Name must be atleast 6 characters long
+                    </p>
+                  )}
+                  {errors.name?.type === "maxLength" && (
+                    <p className="text-red-600">
+                      Name must be within 6 to 10 characters
+                    </p>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -40,11 +62,13 @@ const Register = () => {
                   </label>
                   <input
                     type="email"
+                    {...register("email", { required: true })}
                     placeholder="Type here"
-                    name="email"
                     className="input input-bordered"
-                    required
                   />
+                  {errors.email?.type === "required" && (
+                    <p className="text-red-600">Email is required</p>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -53,30 +77,29 @@ const Register = () => {
                   <input
                     type="password"
                     placeholder="Enter your password"
-                    name="password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern:
+                        /(?=..*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}/,
+                    })}
                     className="input input-bordered"
-                    required
                   />
+                  {errors.password?.type === "required" && (
+                    <p className="text-red-600">Password is required</p>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-600">
+                      Password Must be atleast 6 characters long
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-600">
+                      Password must include 1 uppercase, 1 lowercase, 1 special
+                      character
+                    </p>
+                  )}
                 </div>
-                {/* <div className="form-control">
-                  <label className="label">
-                    <LoadCanvasTemplate />
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Type the text above"
-                    name="captcha"
-                    className="input input-bordered"
-                    ref={captchaRef}
-                    required
-                  />
-                  <button
-                    onClick={handleCaptchaValidation}
-                    className="btn btn-neutral mt-4 btn-xs"
-                  >
-                    Validate
-                  </button>
-                </div> */}
                 <div className="form-control mt-6">
                   <input
                     className="btn btn-primary"
@@ -85,11 +108,18 @@ const Register = () => {
                   />
                 </div>
               </form>
+              <p className="text-orange-500 text-center">
+                Already Registered?{" "}
+                <Link className="font-bold" to="/login">
+                  Please Log In
+                </Link>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    );
+    </>
+  );
 };
 
 export default Register;
