@@ -32,7 +32,7 @@ const Login = () => {
     signInUser(email, password).then((result) => {
       console.log(result.user);
       Swal.fire({
-        title: "Login Successful",
+        title: "Login Successful!",
         icon: "success",
       });
       navigate(from, { replace: true });

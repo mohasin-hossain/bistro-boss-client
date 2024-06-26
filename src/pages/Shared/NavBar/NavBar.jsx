@@ -25,11 +25,15 @@ const NavBar = () => {
       </li>
 
       {user ? (
-        <>
-          <button onClick={handleSignOut} className="btn btn-ghost">
+        <div className="border-2">
+          <span className="px-2 font-semibold">{user?.displayName}</span>
+          <button
+            onClick={handleSignOut}
+            className="btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
+          >
             LogOut
           </button>
-        </>
+        </div>
       ) : (
         <>
           <li>
@@ -73,7 +77,9 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 flex items-center">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 flex items-center">
+          {navLinks}
+        </ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
