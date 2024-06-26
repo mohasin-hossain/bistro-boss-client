@@ -1,3 +1,4 @@
+import { BiTask } from "react-icons/bi";
 import { FaHome, FaShoppingBag } from "react-icons/fa";
 import { FaTowerObservation } from "react-icons/fa6";
 import { GiWallet } from "react-icons/gi";
@@ -20,7 +21,7 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/dashboard/reservation">
-              <FaTowerObservation className="text-2xl" />
+              <BiTask  className="text-2xl" />
               Reservation
             </NavLink>
           </li>
@@ -77,7 +78,7 @@ const Dashboard = () => {
       </div>
 
       {/* Dashboard Content */}
-      <div className="flex-1">
+      <div className="flex-1 p-12">
         <Outlet></Outlet>
       </div>
     </div>
