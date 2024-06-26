@@ -87,14 +87,9 @@ const Login = () => {
                     name="captcha"
                     className="input input-bordered"
                     ref={captchaRef}
+                    onBlur={handleCaptchaValidation}
                     required
                   />
-                  <button
-                    onClick={handleCaptchaValidation}
-                    className="btn btn-neutral mt-4 btn-xs"
-                  >
-                    Validate
-                  </button>
                 </div>
                 <div className="form-control mt-6">
                   <input
