@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
-  const { logInUser } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -25,7 +25,7 @@ const Login = () => {
     const password = form.password.value;
     // console.log(email, password);
 
-    logInUser(email, password).then((result) => {
+    signInUser(email, password).then((result) => {
       console.log(result.user);
     });
   };
