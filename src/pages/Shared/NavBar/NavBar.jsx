@@ -3,9 +3,11 @@ import logo from "../../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { IoCart } from "react-icons/io5";
+import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  const [cart] = useCart();
 
   const handleSignOut = () => {
     logOutUser()
@@ -28,7 +30,7 @@ const NavBar = () => {
         <NavLink to="/cart">
           <button className="btn px-2">
             <IoCart className="text-3xl" />
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart.length}</div>
           </button>
         </NavLink>
       </li>
