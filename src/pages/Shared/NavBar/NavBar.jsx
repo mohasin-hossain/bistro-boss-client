@@ -1,9 +1,9 @@
+import { useContext } from "react";
+import { IoCart } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
-import { IoCart } from "react-icons/io5";
 import useCart from "../../../hooks/useCart";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -27,7 +27,7 @@ const NavBar = () => {
         <NavLink to="/order/salad">Order Food</NavLink>
       </li>
       <li>
-        <NavLink to="/cart">
+        <NavLink to="/dashboard/cart">
           <button className="btn px-2">
             <IoCart className="text-3xl" />
             <div className="badge badge-secondary">+{cart.length}</div>
