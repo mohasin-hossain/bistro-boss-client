@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -55,7 +56,7 @@ const Register = () => {
       </Helmet>
       <div className="bg-form-image">
         <div className="max-w-7xl mx-auto px-10 flex items-center justify-center min-h-screen">
-          <div className="md:flex md:flex-row-reverse items-center justify-center p-12 border-2 shadow-md bg-form-image">
+          <div className="md:flex md:flex-row-reverse items-center justify-center py-2 px-12 border-2 shadow-md bg-form-image">
             <div className="md:w-1/2">
               <img src={RegisterPageImg} alt="" />
             </div>
@@ -164,6 +165,7 @@ const Register = () => {
                   Please Log In
                 </Link>
               </p>
+              <SocialLogin title="Sign Up With"></SocialLogin>
             </div>
           </div>
         </div>
