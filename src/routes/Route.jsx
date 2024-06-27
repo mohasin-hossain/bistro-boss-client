@@ -41,20 +41,25 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: (
-      <AdminRoute>
+      <PrivateRoute>
         <Dashboard></Dashboard>
-      </AdminRoute>
+      </PrivateRoute>
     ),
     children: [
+      // Normal User Routes
       {
         path: "cart",
         element: <Cart></Cart>,
       },
 
-      // Admin related Routes
+      // Admin Only Routes
       {
         path: "users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
     ],
   },
