@@ -3,17 +3,68 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SectionTitle from "../../../components/SectionTitle";
 import { FaUsers } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
+
+  const handleMakeAdmin = (user) => {
+    Swal.fire({
+      title: `Are you sure you want to make ${user.name} an Admin?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Admin!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Successful!",
+              text: `${user.name} is an Admin Now!`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete the user!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="px-12">
@@ -43,12 +94,18 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className="btn btn-sm text-white bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-90">
+                  {user.role === "admin" ? <span className="font-bold">Admin</span> :  <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-sm text-white bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-90"
+                    >
                       <FaUsers className="text-xl"></FaUsers>
-                    </button>
+                    </button>}
                   </td>
                   <td>
-                    <button className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90">
+                    <button
+                      onClick={() => handleDeleteUser(user)}
+                      className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90"
+                    >
                       <MdDeleteForever className="text-xl"></MdDeleteForever>
                     </button>
                   </td>
