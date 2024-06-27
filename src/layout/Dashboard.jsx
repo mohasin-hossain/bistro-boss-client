@@ -119,7 +119,7 @@ const Dashboard = () => {
       </div>
 
       {/* Dashboard Content */}
-      <div className="flex-1 p-12">
+      <div className="flex-1">
         <Outlet></Outlet>
       </div>
     </div>

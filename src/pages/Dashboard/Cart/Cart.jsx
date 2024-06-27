@@ -34,7 +34,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div className="p-12">
       <div className="flex justify-between">
         <h3 className="text-3xl font-semibold">Total Order: {cart.length}</h3>
         <h3 className="text-3xl font-semibold">
