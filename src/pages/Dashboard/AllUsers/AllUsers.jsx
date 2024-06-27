@@ -78,7 +78,7 @@ const AllUsers = () => {
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
-            <thead>
+            <thead className="bg-[#D1A054] text-white">
               <tr>
                 <th>#</th>
                 <th>Name</th>
