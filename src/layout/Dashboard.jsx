@@ -5,10 +5,11 @@ import { GoCodeReview } from "react-icons/go";
 import { IoCart, IoMailOutline, IoMenu } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   // TODO: get isAdmin value from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex">
