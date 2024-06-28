@@ -4,6 +4,7 @@ import useMenu from "../../../hooks/useMenu";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu, , refetch] = useMenu();
@@ -75,9 +76,11 @@ const ManageItems = () => {
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td>
-                    <button className="btn btn-sm text-white bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-90 flex">
-                      <FaRegEdit className="text-xl"></FaRegEdit>
-                    </button>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button className="btn btn-sm text-white bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-90 flex">
+                        <FaRegEdit className="text-xl"></FaRegEdit>
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button
