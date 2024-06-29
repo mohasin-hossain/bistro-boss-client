@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import useCart from "../../../hooks/useCart";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleSignOut = () => {
     logOutUser()
@@ -34,6 +36,17 @@ const NavBar = () => {
           </button>
         </NavLink>
       </li>
+      
+      {user && isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink to="/dashboard/userHome">Dashboard</NavLink>
+        </li>
+      )}
 
       {user ? (
         <div className="border-2">
