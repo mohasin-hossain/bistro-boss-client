@@ -64,7 +64,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/payment">
+                <NavLink to="/dashboard/paymentHistory">
                   <GiWallet className="text-2xl" />
                   Payment History
                 </NavLink>
