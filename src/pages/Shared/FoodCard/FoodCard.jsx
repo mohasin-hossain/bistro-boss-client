@@ -12,6 +12,7 @@ const FoodCard = ({ item }) => {
   const axiosSecure = useAxiosSecure();
   const [, refetch] = useCart();
 
+
   const handleAddToCart = () => {
     if (user && user.email) {
 
