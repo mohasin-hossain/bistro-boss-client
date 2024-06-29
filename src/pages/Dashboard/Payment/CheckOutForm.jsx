@@ -69,9 +69,24 @@ const CheckOutForm = () => {
       console.log("Confirm Error");
     } else {
       console.log("Payment intent", paymentIntent);
-      if(paymentIntent.status === "succeeded") {
+      if (paymentIntent.status === "succeeded") {
         console.log("Transaction Id:", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        // Now save payment in the database
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(), // utc date convert, use moment js
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
+          status: "pending",
+        };
+
+        const res = await axiosSecure.post('/payments', payment );
+        console.log("Payment Saved", res.data)
+
       }
     }
   };
@@ -104,9 +119,9 @@ const CheckOutForm = () => {
         </button>
       </form>
       <p className="text-red-500">{error}</p>
-      {
-        transactionId && <p className="text-green-500">Your Transaction Id: {transactionId}</p>
-      }
+      {transactionId && (
+        <p className="text-green-500">Your Transaction Id: {transactionId}</p>
+      )}
     </div>
   );
 };
