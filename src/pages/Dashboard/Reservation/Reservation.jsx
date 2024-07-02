@@ -5,21 +5,32 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Reservation = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
+  const { data: menuNames = [] } = useQuery({
+    queryKey: ["menu-names"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/menu-names");
+      return res.data;
+    },
+  });
+
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     const booking = {
+      menu: data.menuName,
       name: data.reserverName,
       phone: data.reserverPhone,
       email: data.reserverEmail,
       date: data.date,
       time: data.time,
       guest: data.guest,
+      status: "pending for approval",
     };
 
     axiosSecure.post("/bookings", booking).then((res) => {
@@ -45,7 +56,30 @@ const Reservation = () => {
       ></SectionTitle>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex gap-3 justify-center">
+        {/* Menu Name */}
+        <div className="px-12">
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">
+                Which Menu Item you would like to book?
+              </span>
+            </div>
+            <select
+              defaultValue="default"
+              {...register("menuName")}
+              className="select select-bordered w-full"
+            >
+              <option disabled value="default">
+                Select One
+              </option>
+              {menuNames.map((menuName, idx) => (
+                <option key={idx}>{menuName.name}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="flex gap-3 justify-center mt-4">
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">Date*</span>
