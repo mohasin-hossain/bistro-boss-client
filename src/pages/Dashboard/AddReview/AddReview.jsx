@@ -8,10 +8,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { IoRocket } from "react-icons/io5";
+import useAuth from "../../../hooks/useAuth";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const axiosSecure = useAxiosSecure();
+  const {user} = useAuth();
 
   const { data: menuNames = [] } = useQuery({
     queryKey: ["menu-names"],
@@ -28,6 +30,7 @@ const AddReview = () => {
       menuName: data.menuName,
       review: data.review,
       rating: rating,
+      user: user.email,
     };
 
     axiosSecure.post("/reviews", review).then((res) => {

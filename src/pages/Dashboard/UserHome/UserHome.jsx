@@ -50,7 +50,7 @@ const UserHome = () => {
             </p>
             <p className="flex gap-2 font-semibold text-[#00C4A1]">
               <GoCodeReview className="text-2xl" />
-              Reviews:
+              Reviews: {stats.reviews}
             </p>
             <p className="flex gap-2 font-semibold text-[#FFBB28]">
               <FaBook className="text-2xl" />
