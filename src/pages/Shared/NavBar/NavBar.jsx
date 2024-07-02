@@ -34,7 +34,9 @@ const NavBar = () => {
           <NavLink to="/dashboard/cart">
             <button className="btn px-2 relative">
               <IoCart className="text-3xl" />
-              <div className="badge badge-secondary absolute text-sm -top-2 -right-4">+{cart.length}</div>
+              <div className="badge badge-secondary absolute text-sm -top-2 -right-4">
+                +{cart.length}
+              </div>
             </button>
           </NavLink>
         </li>
@@ -43,7 +45,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-opacity-30 fixed z-10 text-white bg-black">
+    <div className="navbar bg-opacity-30 fixed z-10 text-white bg-black md:px-10 px-5">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -124,9 +126,12 @@ const NavBar = () => {
             </ul>
           </div>
         ) : (
-          <button className="btn">
-            <NavLink to="/login">Login</NavLink>
-          </button>
+          <NavLink
+            className="btn bg-[#D1A054] hover:bg-[#D1A054] rounded-none text-white text-base uppercase tracking-wider"
+            to="/login"
+          >
+            Login
+          </NavLink>
         )}
       </div>
     </div>
