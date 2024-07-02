@@ -18,6 +18,8 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
+import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +76,14 @@ const router = createBrowserRouter([
       {
         path: "review",
         element: <AddReview></AddReview>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
+      },
+      {
+        path: "myBooking",
+        element: <MyBooking></MyBooking>,
       },
 
       // Admin Only Routes
