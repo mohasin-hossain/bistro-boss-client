@@ -3,6 +3,7 @@ import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { PiSmileySadLight } from "react-icons/pi";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -89,6 +90,12 @@ const Cart = () => {
             ))}
           </tbody>
         </table>
+        {!cart.length && (
+          <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto">
+            <PiSmileySadLight className="text-3xl mr-2" />
+            Your Cart is Hungry! Fill it Up and Stay Healthy!
+          </div>
+        )}
       </div>
     </div>
   );
