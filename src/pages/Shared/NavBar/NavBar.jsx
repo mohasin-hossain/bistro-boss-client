@@ -29,14 +29,16 @@ const NavBar = () => {
       <li>
         <NavLink to="/order/salad">Order Food</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard/cart">
-          <button className="btn px-2">
-            <IoCart className="text-3xl" />
-            <div className="badge badge-secondary">+{cart.length}</div>
-          </button>
-        </NavLink>
-      </li>
+      {cart.length > 0 && (
+        <li>
+          <NavLink to="/dashboard/cart">
+            <button className="btn px-2 relative">
+              <IoCart className="text-3xl" />
+              <div className="badge badge-secondary absolute text-sm -top-2 -right-4">+{cart.length}</div>
+            </button>
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -81,7 +83,11 @@ const NavBar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="dropdown dropdown-hover relative">
-            <div tabIndex={0} role="button" className="btn btn-ghost border-2 border-white m-1 rounded-none">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost border-2 border-white m-1 rounded-none"
+            >
               {user?.displayName}
               <RiArrowDropDownLine className="text-3xl" />
             </div>
