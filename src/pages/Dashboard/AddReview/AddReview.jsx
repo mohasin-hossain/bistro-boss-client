@@ -1,6 +1,5 @@
 import SectionTitle from "../../../components/SectionTitle";
 import { useForm } from "react-hook-form";
-import { GoCodeReview } from "react-icons/go";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
