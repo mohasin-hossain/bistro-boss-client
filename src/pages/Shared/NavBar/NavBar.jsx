@@ -5,6 +5,7 @@ import logo from "../../../assets/logo.png";
 import useCart from "../../../hooks/useCart";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -36,35 +37,6 @@ const NavBar = () => {
           </button>
         </NavLink>
       </li>
-      
-      {user && isAdmin && (
-        <li>
-          <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
-        </li>
-      )}
-      {user && !isAdmin && (
-        <li>
-          <NavLink to="/dashboard/userHome">Dashboard</NavLink>
-        </li>
-      )}
-
-      {user ? (
-        <div className="border-2">
-          <span className="px-2 font-semibold">{user?.displayName}</span>
-          <button
-            onClick={handleSignOut}
-            className="btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
-          >
-            LogOut
-          </button>
-        </div>
-      ) : (
-        <>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-        </>
-      )}
     </>
   );
 
@@ -105,8 +77,51 @@ const NavBar = () => {
           {navLinks}
         </ul>
       </div>
+
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <div className="dropdown dropdown-hover relative">
+            <div tabIndex={0} role="button" className="btn btn-ghost border-2 border-white m-1 rounded-none">
+              {user?.displayName}
+              <RiArrowDropDownLine className="text-3xl" />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-black bg-opacity-40 rounded-none z-[1] w-52 p-4 shadow absolute right-0 text-white space-y-2"
+            >
+              <li>
+                {user && isAdmin && (
+                  <NavLink
+                    className="p-0 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
+                    to="/dashboard/adminHome"
+                  >
+                    Dashboard
+                  </NavLink>
+                )}
+                {user && !isAdmin && (
+                  <NavLink
+                    className="p-0 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
+                    to="/dashboard/userHome"
+                  >
+                    Dashboard
+                  </NavLink>
+                )}
+              </li>
+              <li>
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-ghost rounded-none bg-red-500 hover:bg-red-500 hover:bg-opacity-80"
+                >
+                  LogOut
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <button className="btn">
+            <NavLink to="/login">Login</NavLink>
+          </button>
+        )}
       </div>
     </div>
   );
