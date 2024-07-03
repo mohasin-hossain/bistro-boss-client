@@ -89,7 +89,7 @@ const AdminHome = () => {
   });
 
   return (
-    <div className="my-8 px-12">
+    <div className="my-8 px-12 flex justify-center items-center flex-col">
       <h3 className="text-3xl">
         Welcome
         <span className="text-orange-500 font-bold">
@@ -99,6 +99,10 @@ const AdminHome = () => {
       </h3>
 
       <div className="stats shadow mt-4 ">
+        <div className="stat">
+          <img className="w-20 rounded-full border-4 border-[#D1A054]" src={user.photoURL} alt="" />
+        </div>
+
         <div className="stat">
           <div className="stat-figure text-primary">
             <GiTakeMyMoney className="text-5xl" />
@@ -132,7 +136,7 @@ const AdminHome = () => {
         </div>
       </div>
 
-      <div className="flex mt-8">
+      <div className="flex gap-16 mt-8">
         <div className="w-1/2">
           <BarChart
             width={500}
