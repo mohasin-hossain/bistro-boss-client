@@ -21,6 +21,7 @@ import AddReview from "../pages/Dashboard/AddReview/AddReview";
 import Reservation from "../pages/Dashboard/Reservation/Reservation";
 import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
+import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 
 const router = createBrowserRouter([
   {
@@ -117,6 +118,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageBookings></ManageBookings>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "managePayments",
+        element: (
+          <AdminRoute>
+            <ManagePayments></ManagePayments>
           </AdminRoute>
         ),
       },

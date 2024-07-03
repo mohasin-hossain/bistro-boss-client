@@ -43,6 +43,12 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/managePayments">
+                  <GiWallet className="text-2xl" />
+                  Manage Payments
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/users">
                   <FaUsers className="text-2xl" />
                   All Users
