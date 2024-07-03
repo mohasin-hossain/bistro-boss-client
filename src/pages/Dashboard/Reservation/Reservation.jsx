@@ -30,7 +30,7 @@ const Reservation = () => {
       date: data.date,
       time: data.time,
       guest: data.guest,
-      status: "pending for approval",
+      status: "pending",
     };
 
     axiosSecure.post("/bookings", booking).then((res) => {

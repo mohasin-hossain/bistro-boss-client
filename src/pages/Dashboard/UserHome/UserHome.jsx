@@ -18,8 +18,6 @@ const UserHome = () => {
     },
   });
 
-  console.log(stats)
-
   return (
     <div className="p-12">
       <h3 className="text-3xl">
@@ -54,7 +52,7 @@ const UserHome = () => {
             </p>
             <p className="flex gap-2 font-semibold text-[#FFBB28]">
               <FaBook className="text-2xl" />
-              Bookings:
+              Bookings: {stats.bookings}
             </p>
             <p className="flex gap-2 font-semibold text-[#FF8042]">
               <GiWallet className="text-2xl" />

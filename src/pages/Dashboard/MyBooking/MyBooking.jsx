@@ -3,28 +3,31 @@ import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBooking = () => {
-    const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
-    const {data: bookings = []} = useQuery({
-        queryKey: ['bookings'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/bookings')
-            return res.data;
-        }
-    })
+  const { data: bookings = [] } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/bookings");
+      return res.data;
+    },
+  });
 
-    return (
-        <div>
-            <SectionTitle heading="My Booking" subHeading="Excellent Ambience"></SectionTitle>
-      
-            <div className="overflow-x-auto px-12">
+  return (
+    <div>
+      <SectionTitle
+        heading="My Booking"
+        subHeading="Excellent Ambience"
+      ></SectionTitle>
+
+      <div className="overflow-x-auto px-12">
         <table className="table table-zebra">
           {/* head */}
           <thead>
             <tr>
               <th>#</th>
               <th>Customer</th>
-              <th>Item Name</th>
+              <th>Booked Item</th>
               <th>Quantity</th>
               <th>Date</th>
               <th>Time</th>
@@ -46,8 +49,8 @@ const MyBooking = () => {
           </tbody>
         </table>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default MyBooking;
