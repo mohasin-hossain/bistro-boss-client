@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { MdDeleteForever } from "react-icons/md";
 
 const ManagePayments = () => {
   const axiosSecure = useAxiosSecure();
@@ -29,6 +30,31 @@ const ManagePayments = () => {
     });
   };
 
+  const handleDeletePayment = (payment) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/payments/${payment._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Payment has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <SectionTitle
@@ -47,6 +73,7 @@ const ManagePayments = () => {
               <th>Total Price</th>
               <th>Payment Date</th>
               <th>Status</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -80,6 +107,14 @@ const ManagePayments = () => {
                     <option value="successful">Successful</option>
                     <option value="failed">Failed</option>
                   </select>
+                </td>
+                <td className="text-center">
+                  <button
+                    onClick={() => handleDeletePayment(payment)}
+                    className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90"
+                  >
+                    <MdDeleteForever className="text-xl"></MdDeleteForever>
+                  </button>
                 </td>
               </tr>
             ))}
