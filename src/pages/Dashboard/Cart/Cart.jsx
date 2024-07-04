@@ -68,7 +68,7 @@ const Cart = () => {
               <th>Item Image</th>
               <th>Item Name</th>
               <th>Price</th>
-              <th>Action</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -77,8 +77,8 @@ const Cart = () => {
                 <th>{idx + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">
-                    <div className="h-16 w-16">
-                      <img src={item.image} alt="Item image" />
+                    <div>
+                      <img className="w-12 h-12 rounded-md" src={item.image} alt="Item image" />
                     </div>
                   </div>
                 </td>

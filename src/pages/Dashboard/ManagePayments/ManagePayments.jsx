@@ -94,7 +94,6 @@ const ManagePayments = () => {
                 <td>${payment.price}</td>
                 <td>
                   {moment(payment.date).format("MMMM Do YYYY, h:mm a")}
-                  {/* {payment.date} */}
                 </td>
                 <td>
                   <select

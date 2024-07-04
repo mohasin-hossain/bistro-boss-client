@@ -74,7 +74,7 @@ const ManageItems = () => {
                     </div>
                   </td>
                   <td>{item.name}</td>
-                  <td>{item.price}</td>
+                  <td>${item.price}</td>
                   <td>
                     <Link to={`/dashboard/updateItem/${item._id}`}>
                       <button className="btn btn-sm text-white bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-90 flex">

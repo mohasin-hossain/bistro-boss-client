@@ -3,6 +3,8 @@ import SectionTitle from "../../../components/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { PiSmileySadLight } from "react-icons/pi";
+import moment from "moment";
+moment().format();
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -24,7 +26,7 @@ const PaymentHistory = () => {
       ></SectionTitle>
 
       <div className="overflow-x-auto px-12">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead className="bg-[#D1A054] text-white">
             <tr>
@@ -32,19 +34,34 @@ const PaymentHistory = () => {
               <th>Email</th>
               <th>Transaction ID</th>
               <th>Total Price</th>
-              <th>Payment Date</th>
+              <th>Payment Date & Time</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {payments.map((payment, idx) => (
-              <tr key={payment._id}>
+              <tr
+                key={payment._id}
+                className={
+                  payment.status === "successful"
+                    ? "bg-green-100"
+                    : "bg-red-100"
+                }
+              >
                 <th>{idx + 1}</th>
                 <td>{payment.email}</td>
                 <td>{payment.transactionId}</td>
                 <td>${payment.price}</td>
-                <td>{payment.date}</td>
-                <td>{payment.status}</td>
+                <td>{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
+                <td
+                  className={
+                    payment.status === "successful"
+                      ? "text-green-500 uppercase font-bold"
+                      : "text-red-500 font-semibold uppercase"
+                  }
+                >
+                  {payment.status}
+                </td>
               </tr>
             ))}
           </tbody>
