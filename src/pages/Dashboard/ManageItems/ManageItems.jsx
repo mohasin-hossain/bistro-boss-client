@@ -67,7 +67,7 @@ const ManageItems = () => {
                   <td>
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-16 h-16"
+                        className="w-12 h-12 rounded-md"
                         src={item.image}
                         alt="Avatar Tailwind CSS Component"
                       />

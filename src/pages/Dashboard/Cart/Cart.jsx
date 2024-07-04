@@ -59,10 +59,10 @@ const Cart = () => {
         )}
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-4">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="bg-[#D1A054] text-white">
             <tr>
               <th>#</th>
               <th>Item Image</th>

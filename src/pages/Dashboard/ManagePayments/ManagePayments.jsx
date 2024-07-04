@@ -3,6 +3,8 @@ import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
+import moment from "moment";
+moment().format();
 
 const ManagePayments = () => {
   const axiosSecure = useAxiosSecure();
@@ -71,7 +73,7 @@ const ManagePayments = () => {
               <th>Email</th>
               <th>Transaction ID</th>
               <th>Total Price</th>
-              <th>Payment Date</th>
+              <th>Payment Date & Time</th>
               <th>Status</th>
               <th>Delete</th>
             </tr>
@@ -90,7 +92,10 @@ const ManagePayments = () => {
                 <td>{payment.email}</td>
                 <td>{payment.transactionId}</td>
                 <td>${payment.price}</td>
-                <td>{payment.date}</td>
+                <td>
+                  {moment(payment.date).format("MMMM Do YYYY, h:mm a")}
+                  {/* {payment.date} */}
+                </td>
                 <td>
                   <select
                     onChange={(e) =>

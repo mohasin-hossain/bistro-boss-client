@@ -48,7 +48,7 @@ const AddItems = () => {
   return (
     <div>
       <SectionTitle
-        heading="Add and Item"
+        heading="Add an Item"
         subHeading="What's New"
       ></SectionTitle>
 
@@ -119,17 +119,22 @@ const AddItems = () => {
 
           {/* Image */}
           <div>
+            <div className="label">
+              <span className="label-text">Add Recipe Image*</span>
+            </div>
             <input
               {...register("image")}
               type="file"
-              className="file-input w-full max-w-xs"
+              className="file-input w-full max-w-md"
             />
           </div>
 
-          <button className="btn">
-            Add Item
-            <FaUtensils></FaUtensils>
-          </button>
+          <div className="flex justify-center">
+            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60">
+              Add Item
+              <FaUtensils></FaUtensils>
+            </button>
+          </div>
         </form>
       </div>
     </div>

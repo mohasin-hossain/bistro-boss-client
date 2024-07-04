@@ -26,7 +26,7 @@ const PaymentHistory = () => {
       <div className="overflow-x-auto px-12">
         <table className="table table-zebra">
           {/* head */}
-          <thead>
+          <thead className="bg-[#D1A054] text-white">
             <tr>
               <th>#</th>
               <th>Email</th>
