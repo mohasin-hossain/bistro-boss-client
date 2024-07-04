@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
+import { IoRocket } from "react-icons/io5";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -44,11 +45,16 @@ const Cart = () => {
         </h3>
         {cart.length ? (
           <Link to="/dashboard/payment">
-            <button className="btn btn-primary">Pay</button>
+            <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white hover:bg-opacity-90 rounded-none">
+              Order Now <IoRocket className="text-xl" />
+            </button>
           </Link>
         ) : (
-          <button disabled className="btn">
-            Pay
+          <button
+            disabled
+            className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-black "
+          >
+            Order Now <IoRocket className="text-xl" />
           </button>
         )}
       </div>

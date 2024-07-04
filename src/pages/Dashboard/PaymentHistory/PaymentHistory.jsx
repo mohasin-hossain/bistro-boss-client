@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { PiSmileySadLight } from "react-icons/pi";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -48,6 +49,12 @@ const PaymentHistory = () => {
             ))}
           </tbody>
         </table>
+        {!payments.length && (
+          <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto">
+            <PiSmileySadLight className="text-3xl mr-2" />
+            Invest in your health — make a payment today!
+          </div>
+        )}
       </div>
     </div>
   );

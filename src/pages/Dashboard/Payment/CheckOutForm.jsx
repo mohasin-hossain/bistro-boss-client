@@ -107,7 +107,7 @@ const CheckOutForm = () => {
   };
 
   return (
-    <div>
+    <div className="px-32">
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -126,7 +126,7 @@ const CheckOutForm = () => {
           }}
         />
         <button
-          className="btn btn-primary my-4"
+          className="btn  bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none w-32 mt-8"
           type="submit"
           disabled={!stripe || !clientSecret}
         >
