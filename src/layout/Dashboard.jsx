@@ -1,5 +1,12 @@
 import { BiTask } from "react-icons/bi";
-import { FaBook, FaHome, FaList, FaShoppingBag, FaUsers, FaUtensils } from "react-icons/fa";
+import {
+  FaBook,
+  FaHome,
+  FaList,
+  FaShoppingBag,
+  FaUsers,
+  FaUtensils,
+} from "react-icons/fa";
 import { GiWallet } from "react-icons/gi";
 import { GoCodeReview } from "react-icons/go";
 import { IoCart, IoMailOutline, IoMenu } from "react-icons/io5";
@@ -43,9 +50,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/managePayments">
+                <NavLink to="/dashboard/manageOrders">
                   <GiWallet className="text-2xl" />
-                  Manage Payments
+                  Manage Orders
                 </NavLink>
               </li>
               <li>
@@ -64,33 +71,33 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
-                  <BiTask className="text-2xl" />
-                  Reservation
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/paymentHistory">
-                  <GiWallet className="text-2xl" />
-                  Payment History
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to="/dashboard/cart">
                   <IoCart className="text-2xl" />
                   My Cart
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/review">
-                  <GoCodeReview className="text-2xl" />
-                  Add Review
+                <NavLink to="/dashboard/myOrders">
+                  <GiWallet className="text-2xl" />
+                  My Orders
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/reservation">
+                  <BiTask className="text-2xl" />
+                  Reservation
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/myBooking">
                   <SlCalender className="text-2xl" />
                   My Booking
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/review">
+                  <GoCodeReview className="text-2xl" />
+                  Add Review
                 </NavLink>
               </li>
             </>

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
+import { PiSmileySadLight } from "react-icons/pi";
 import SectionTitle from "../../../components/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { PiSmileySadLight } from "react-icons/pi";
-import moment from "moment";
 moment().format();
 
-const PaymentHistory = () => {
+const MyOrders = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -21,7 +21,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <SectionTitle
-        heading={`All Payments: ${payments.length}`}
+        heading={`My Orders: ${payments.length}`}
         subHeading="At a Glance"
       ></SectionTitle>
 
@@ -106,4 +106,4 @@ const PaymentHistory = () => {
   );
 };
 
-export default PaymentHistory;
+export default MyOrders;

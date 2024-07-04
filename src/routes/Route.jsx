@@ -1,27 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import Cart from "../pages/Dashboard/Cart/Cart";
+import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
+import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
+import ManageOrders from "../pages/Dashboard/ManageOrders/ManageOrders";
+import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
+import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import Home from "../pages/Home/Home/Home";
+import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
-import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import Dashboard from "../layout/Dashboard";
-import Cart from "../pages/Dashboard/Cart/Cart";
-import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
-import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
-import AddItems from "../pages/Dashboard/AddItems/AddItems";
-import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
-import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
-import Payment from "../pages/Dashboard/Payment/Payment";
-import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
-import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
-import UserHome from "../pages/Dashboard/UserHome/UserHome";
-import AddReview from "../pages/Dashboard/AddReview/AddReview";
-import Reservation from "../pages/Dashboard/Reservation/Reservation";
-import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
-import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
-import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -72,8 +72,8 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
       },
       {
-        path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        path: "myOrders",
+        element: <MyOrders></MyOrders>,
       },
       {
         path: "review",
@@ -122,10 +122,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "managePayments",
+        path: "manageOrders",
         element: (
           <AdminRoute>
-            <ManagePayments></ManagePayments>
+            <ManageOrders></ManageOrders>
           </AdminRoute>
         ),
       },

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
+import { MdDeleteForever } from "react-icons/md";
+import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import { MdDeleteForever } from "react-icons/md";
-import moment from "moment";
 moment().format();
 
-const ManagePayments = () => {
+const ManageOrders = () => {
   const axiosSecure = useAxiosSecure();
 
   const { data: payments = [], refetch } = useQuery({
@@ -17,7 +17,8 @@ const ManagePayments = () => {
     },
   });
 
-  const handlePaymentStatus = (payment, status) => {
+  
+  const handleOrderStatus = (payment, status) => {
     axiosSecure.patch(`/payments/${payment._id}`, { status }).then((res) => {
       if (res.data.modifiedCount > 0) {
         refetch();
@@ -32,7 +33,7 @@ const ManagePayments = () => {
     });
   };
 
-  const handleDeletePayment = (payment) => {
+  const handleDeleteOrder = (payment) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -60,7 +61,7 @@ const ManagePayments = () => {
   return (
     <div>
       <SectionTitle
-        heading={`Total Payments: ${payments.length}`}
+        heading={`Total Orders: ${payments.length}`}
         subHeading="At a Glance"
       ></SectionTitle>
 
@@ -125,7 +126,7 @@ const ManagePayments = () => {
                 <td>
                   <select
                     onChange={(e) =>
-                      handlePaymentStatus(payment, e.target.value)
+                      handleOrderStatus(payment, e.target.value)
                     }
                     value={payment.status}
                     className={`select select-bordered border-[#D1A054] border-2 rounded-md w-full max-w-md uppercase ${
@@ -147,7 +148,7 @@ const ManagePayments = () => {
                 </td>
                 <td className="text-center">
                   <button
-                    onClick={() => handleDeletePayment(payment)}
+                    onClick={() => handleDeleteOrder(payment)}
                     className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90"
                   >
                     <MdDeleteForever className="text-xl"></MdDeleteForever>
@@ -162,4 +163,4 @@ const ManagePayments = () => {
   );
 };
 
-export default ManagePayments;
+export default ManageOrders;
