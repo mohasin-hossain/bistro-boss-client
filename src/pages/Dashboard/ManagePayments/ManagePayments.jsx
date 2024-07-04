@@ -24,7 +24,7 @@ const ManagePayments = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Payment Status Updated!",
+          title: "Order Status Updated!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -48,7 +48,7 @@ const ManagePayments = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "Payment has been deleted.",
+              text: "Order has been deleted.",
               icon: "success",
             });
           }
@@ -72,6 +72,7 @@ const ManagePayments = () => {
               <th>#</th>
               <th>Email</th>
               <th>Transaction ID</th>
+              <th>Ordered Items</th>
               <th>Total Price</th>
               <th>Payment Date & Time</th>
               <th>Status</th>
@@ -83,18 +84,44 @@ const ManagePayments = () => {
               <tr
                 key={payment._id}
                 className={
-                  payment.status === "successful"
-                    ? "bg-green-100"
-                    : "bg-red-100"
+                  payment.status === "pending" || payment.status === "failed"
+                    ? "bg-red-100"
+                    : "bg-green-100"
                 }
               >
                 <th>{idx + 1}</th>
                 <td>{payment.email}</td>
                 <td>{payment.transactionId}</td>
-                <td>${payment.price}</td>
                 <td>
-                  {moment(payment.date).format("MMMM Do YYYY, h:mm a")}
+                  
+                  {/* User Order List Modal */}
+                  <button
+                    className="link text-[#D1A054] block"
+                    onClick={() =>
+                      document.getElementById("my_modal_2").showModal()
+                    }
+                  >
+                    View Items
+                  </button>
+
+                  <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box ">
+                      <h3 className="text-2xl text-center">User Order</h3>
+                      <div className="divider"></div>
+                      {payment.menuItemNames.map((name, idx) => (
+                        <li className=" list-disc" key={idx}>
+                          {name} - 1x
+                        </li>
+                      ))}
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                      <button>close</button>
+                    </form>
+                  </dialog>
+
                 </td>
+                <td>${payment.price}</td>
+                <td>{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
                 <td>
                   <select
                     onChange={(e) =>
@@ -102,14 +129,20 @@ const ManagePayments = () => {
                     }
                     value={payment.status}
                     className={`select select-bordered border-[#D1A054] border-2 rounded-md w-full max-w-md uppercase ${
-                      payment.status === "successful"
-                        ? "border-green-500 text-green-500"
-                        : "border-red-500 text-red-500"
+                      payment.status === "pending" ||
+                      payment.status === "failed"
+                        ? "border-red-500 text-red-500"
+                        : "border-green-500 text-green-500"
                     }`}
                   >
                     <option value="pending">Pending</option>
                     <option value="successful">Successful</option>
                     <option value="failed">Failed</option>
+                    <option value="order accepted">Order Accepted</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="packaging">Packaging</option>
+                    <option value="picked by rider">Picked by Rider</option>
+                    <option value="delivered">Delivered</option>
                   </select>
                 </td>
                 <td className="text-center">

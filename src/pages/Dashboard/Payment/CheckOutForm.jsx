@@ -86,6 +86,7 @@ const CheckOutForm = () => {
           date: new Date(), // utc date convert, use moment js
           cartIds: cart.map((item) => item._id),
           menuItemIds: cart.map((item) => item.menuId),
+          menuItemNames: cart.map(item => item.name),
           status: "pending",
         };
 

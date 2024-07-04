@@ -83,7 +83,7 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>{item.name}</td>
-                <td>{item.price}</td>
+                <td>${item.price}</td>
                 <th>
                   <button
                     onClick={() => handleDeleteItem(item._id)}

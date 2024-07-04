@@ -21,7 +21,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <SectionTitle
-        heading={`Total Payments: ${payments.length}`}
+        heading={`All Payments: ${payments.length}`}
         subHeading="At a Glance"
       ></SectionTitle>
 
@@ -33,6 +33,7 @@ const PaymentHistory = () => {
               <th>#</th>
               <th>Email</th>
               <th>Transaction ID</th>
+              <th>Ordered Items</th>
               <th>Total Price</th>
               <th>Payment Date & Time</th>
               <th>Status</th>
@@ -43,21 +44,49 @@ const PaymentHistory = () => {
               <tr
                 key={payment._id}
                 className={
-                  payment.status === "successful"
-                    ? "bg-green-100"
-                    : "bg-red-100"
+                  payment.status === "pending" || payment.status === "failed"
+                    ? "bg-red-100"
+                    : "bg-green-100"
                 }
               >
                 <th>{idx + 1}</th>
                 <td>{payment.email}</td>
                 <td>{payment.transactionId}</td>
+                <td>
+                  
+                  {/* User Order List Modal */}
+                  <button
+                    className="link text-[#D1A054] block"
+                    onClick={() =>
+                      document.getElementById("my_modal_2").showModal()
+                    }
+                  >
+                    View Items
+                  </button>
+
+                  <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box ">
+                      <h3 className="text-2xl text-center">Your Order</h3>
+                      <div className="divider"></div>
+                      {payment.menuItemNames.map((name, idx) => (
+                        <li className=" list-disc" key={idx}>
+                          {name} - 1x
+                        </li>
+                      ))}
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                      <button>close</button>
+                    </form>
+                  </dialog>
+
+                </td>
                 <td>${payment.price}</td>
                 <td>{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
                 <td
                   className={
-                    payment.status === "successful"
-                      ? "text-green-500 uppercase font-bold"
-                      : "text-red-500 font-semibold uppercase"
+                    payment.status === "pending" || payment.status == "failed"
+                      ? "text-red-500 font-semibold uppercase"
+                      : "text-green-500 uppercase font-bold"
                   }
                 >
                   {payment.status}
