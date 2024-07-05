@@ -39,7 +39,7 @@ const MyOrders = () => {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-inter font-normal">
             {payments.map((payment, idx) => (
               <tr
                 key={payment._id}

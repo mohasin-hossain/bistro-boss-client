@@ -11,17 +11,21 @@ import { GiWallet } from "react-icons/gi";
 import { GoCodeReview } from "react-icons/go";
 import { IoCart, IoMailOutline, IoMenu } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import Logo from "../assets/Logo Bistro Boss.png";
 
 const Dashboard = () => {
   // TODO: get isAdmin value from the database
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex">
+    <div className="flex font-cinzel font-medium">
       {/* Dashboard Sidebar */}
       <div className="w-64 min-h-screen bg-[#D1A054]">
+        <Link to="/">
+          <img className="w-44 pt-10 pb-4 mx-auto" src={Logo} alt="" />
+        </Link>
         <ul className="menu p-4 rounded-box space-y-2">
           {isAdmin ? (
             <>

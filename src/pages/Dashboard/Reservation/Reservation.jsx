@@ -55,7 +55,7 @@ const Reservation = () => {
         subHeading="Book a Table"
       ></SectionTitle>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="font-inter font-normal">
         {/* Menu Name */}
         <div className="px-12">
           <label className="form-control w-full">

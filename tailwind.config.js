@@ -9,6 +9,10 @@ export default {
       backgroundImage: {
         'featured-image': 'url(./src/assets/home/featured.jpg)',
         "form-image": 'url(./src/assets/others/authentication.png)',
+      },
+      fontFamily: {
+        cinzel: '"Cinzel", serif',
+        inter: '"Inter", sans-serif',
       }
     },
   },

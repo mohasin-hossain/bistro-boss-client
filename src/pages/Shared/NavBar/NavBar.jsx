@@ -6,6 +6,7 @@ import useCart from "../../../hooks/useCart";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import LogoBistroBoss from '../../../assets/Logo Bistro Boss White.png';
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -71,9 +72,9 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost text-xl">
+        <NavLink to="/" className="btn btn-ghost text-xl flex items-center">
           <img className="w-10" src={logo} alt="" />
-          Bistro Boss
+          <img className="w-40" src={LogoBistroBoss} alt="" />
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">

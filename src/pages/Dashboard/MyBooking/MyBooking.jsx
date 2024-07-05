@@ -37,7 +37,7 @@ const MyBooking = () => {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-inter font-normal">
             {bookings.map((booking, idx) => (
               <tr
                 key={booking._id}
