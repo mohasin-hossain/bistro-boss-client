@@ -3,10 +3,11 @@ import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { PiSmileySadLight } from "react-icons/pi";
+import moment from "moment";
 
 const MyBooking = () => {
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -50,7 +51,7 @@ const MyBooking = () => {
                 <td>{booking.menu}</td>
                 <td>{booking.guest}</td>
                 <td>{booking.date}</td>
-                <td>{booking.time}</td>
+                <td>{moment(booking.time, "HH:mm").format("hh:mm A")}</td>
                 <td
                   className={
                     booking.status == "confirmed"
