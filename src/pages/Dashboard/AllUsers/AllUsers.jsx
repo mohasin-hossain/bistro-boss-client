@@ -87,7 +87,7 @@ const AllUsers = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="font-inter font-normal">
               {users.map((user, idx) => (
                 <tr key={user._id}>
                   <th>{idx + 1}</th>

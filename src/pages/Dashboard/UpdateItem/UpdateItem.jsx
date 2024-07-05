@@ -57,7 +57,7 @@ const UpdateItem = () => {
       ></SectionTitle>
 
       <div className="px-12">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 font-inter font-normal">
           {/* Recipe Name */}
           <label className="form-control w-full">
             <div className="label">
@@ -126,6 +126,9 @@ const UpdateItem = () => {
 
           {/* Image */}
           <div>
+          <div className="label">
+              <span className="label-text">Add Recipe Image*</span>
+            </div>
             <input
               {...register("image")}
               type="file"
@@ -133,10 +136,12 @@ const UpdateItem = () => {
             />
           </div>
 
-          <button className="btn">
+          <div className="flex justify-center">
+            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel">
             Update Item
             <FaUtensils></FaUtensils>
-          </button>
+            </button>
+          </div>
         </form>
       </div>
     </div>

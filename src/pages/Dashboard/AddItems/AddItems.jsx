@@ -52,7 +52,7 @@ const AddItems = () => {
         subHeading="What's New"
       ></SectionTitle>
 
-      <div className="px-12">
+      <div className="px-12 font-inter font-normal">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
           {/* Recipe Name */}
           <label className="form-control w-full">
@@ -130,7 +130,7 @@ const AddItems = () => {
           </div>
 
           <div className="flex justify-center">
-            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60">
+            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel">
               Add Item
               <FaUtensils></FaUtensils>
             </button>

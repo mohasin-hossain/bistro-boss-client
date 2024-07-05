@@ -5,6 +5,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -103,8 +104,8 @@ const ManageBookings = () => {
           <thead className="bg-[#D1A054] text-white">
             <tr>
               <th>#</th>
-              <th>Customer Name</th>
-              <th>Customer Email</th>
+              <th>Name</th>
+              <th>Email</th>
               <th>Booked Item</th>
               <th>Quantity</th>
               <th>Date</th>
@@ -115,7 +116,7 @@ const ManageBookings = () => {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-inter font-normal">
             {bookings.map((booking, idx) => (
               <tr
                 key={booking._id}
@@ -129,7 +130,7 @@ const ManageBookings = () => {
                 <td>{booking.menu}</td>
                 <td>{booking.guest}</td>
                 <td>{booking.date}</td>
-                <td>{booking.time}</td>
+                <td>{moment(booking.time, "HH:mm").format("hh:mm A")}</td>
                 <td
                   className={
                     booking.status === "confirmed"

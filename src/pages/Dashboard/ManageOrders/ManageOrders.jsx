@@ -75,12 +75,12 @@ const ManageOrders = () => {
               <th>Transaction ID</th>
               <th>Ordered Items</th>
               <th>Total Price</th>
-              <th>Payment Date & Time</th>
+              <th>Payment Time</th>
               <th>Status</th>
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-inter font-normal">
             {payments.map((payment, idx) => (
               <tr
                 key={payment._id}

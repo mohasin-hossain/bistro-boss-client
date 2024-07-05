@@ -60,7 +60,7 @@ const ManageItems = () => {
                 <th>Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="font-inter font-normal">
               {menu.map((item, idx) => (
                 <tr key={item._id}>
                   <td>{idx + 1}</td>
