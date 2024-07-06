@@ -16,7 +16,6 @@ import useAdmin from "../hooks/useAdmin";
 import Logo from "../assets/Logo Bistro Boss.png";
 
 const Dashboard = () => {
-  // TODO: get isAdmin value from the database
   const [isAdmin] = useAdmin();
 
   return (
@@ -24,7 +23,7 @@ const Dashboard = () => {
       {/* Dashboard Sidebar */}
       <div className="w-64 min-h-screen bg-[#D1A054]">
         <Link to="/">
-          <img className="w-44 pt-10 pb-4 mx-auto" src={Logo} alt="" />
+          <img className="w-44 mt-10 mb-4 mx-auto" src={Logo} alt="" />
         </Link>
         <ul className="menu p-4 rounded-box space-y-2">
           {isAdmin ? (
