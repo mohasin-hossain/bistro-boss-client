@@ -78,15 +78,15 @@ const FoodCard = ({ item }) => {
           </p>
         </figure>
         <div className="card-body grow">
-          <h2 className="card-title mx-auto">{name}</h2>
-          <p className="text-gray-500">
+          <h2 className="card-title mx-auto font-cinzel font-medium">{name}</h2>
+          <p className="text-gray-500 font-inter">
             {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
           </p>
           <div className="card-actions justify-between mt-8">
 
             {/* Reviews Modal */}
             <button
-              className="btn btn-ghost link uppercase text-[#BB8506]"
+              className="btn font-cinzel btn-ghost link uppercase text-[#BB8506]"
               onClick={() =>
                 document.getElementById(`my_modal_${_id}`).showModal()
               }
@@ -97,13 +97,13 @@ const FoodCard = ({ item }) => {
 
             <dialog id={`my_modal_${_id}`} className="modal">
               <div className="modal-box w-11/12 max-w-xl border-4 border-[#D1A054]">
-                <h3 className="font-bold text-lg">Reviews of {name}</h3>
+                <h3 className="font-bold text-lg font-cinzel">Reviews of {name}</h3>
                 <div className="py-4">
                   {reviews.length > 0 ? (
                     reviews.map((review, index) => (
                       <div
                         key={index}
-                        className="mt-4 flex flex-col items-center space-y-2 bg-[#D1A054] bg-opacity-40 p-4 rounded-lg"
+                        className="mt-4 flex flex-col items-center space-y-2 bg-[#D1A054] bg-opacity-40 p-4 rounded-lg font-inter"
                       >
                         <Rating
                           style={{ maxWidth: 180 }}
@@ -121,7 +121,7 @@ const FoodCard = ({ item }) => {
                     </p>
                   )}
                 </div>
-                <div className="modal-action sticky -bottom-4 bg-base-200 p-4">
+                <div className="modal-action sticky -bottom-4 bg-base-200 p-4 font-cinzel">
                   <Link to="/dashboard/review">
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white ">
                       Add a Review
@@ -140,7 +140,7 @@ const FoodCard = ({ item }) => {
 
             <button
               onClick={handleAddToCart}
-              className="btn btn-outline border-0 border-b-2 border-[#BB8506] bg-[#E8E8E8] uppercase text-[#BB8506]"
+              className="btn btn-outline border-0 border-b-2 border-[#BB8506] bg-[#E8E8E8] uppercase text-[#BB8506] font-cinzel"
             >
               Add to Cart
             </button>
