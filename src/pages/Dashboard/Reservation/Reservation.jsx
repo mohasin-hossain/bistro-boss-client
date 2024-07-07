@@ -159,7 +159,7 @@ const Reservation = () => {
           </label>
         </div>
 
-        <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white flex mx-auto mt-4">
+        <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white flex mx-auto mt-4 font-cinzel">
           Book a Table
           <SlCalender className="text-xl" />
         </button>
