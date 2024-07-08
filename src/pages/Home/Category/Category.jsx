@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,58 +14,63 @@ import SectionTitle from "../../../components/SectionTitle";
 const Category = () => {
   return (
     <section>
-            <div className="max-w-7xl mx-auto px-10 my-10">
-      <SectionTitle
-        heading={"Order Online"}
-        subHeading={"From 11:00am to 10:00pm"}
-      ></SectionTitle>
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src={slide1} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Salad
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide2} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Deserts
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide3} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Soup
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide4} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Pizza
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide5} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Salad
-          </h3>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slide3} alt="" />
-          <h3 className="text-4xl text-white uppercase text-center -mt-12">
-            Soup
-          </h3>
-        </SwiperSlide>
-      </Swiper>
-    </div>
+      <div className="max-w-7xl mx-auto px-10 font-cinzel">
+        <SectionTitle
+          heading={"Order Online"}
+          subHeading={"From 11:00am to 10:00pm"}
+        ></SectionTitle>
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination, Autoplay]}
+          className="mySwiper"
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+        >
+          <SwiperSlide className="py-16">
+            <img src={slide1} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Salad
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide className="py-16">
+            <img src={slide2} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Deserts
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide className="py-16">
+            <img src={slide3} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Soup
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide className="py-16">
+            <img src={slide4} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Pizza
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide className="py-16">
+            <img src={slide5} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Salad
+            </h3>
+          </SwiperSlide>
+          <SwiperSlide className="py-16">
+            <img src={slide3} alt="" />
+            <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              Soup
+            </h3>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </section>
   );
 };
