@@ -5,7 +5,7 @@ import moment from "moment";
 const Featured = () => {
   return (
     <section className="bg-featured-image bg-fixed bg-cover bg-no-repeat text-white">
-      <div className="bg-black bg-opacity-60 py-14">
+      <div className="bg-black bg-opacity-60 py-4 md:py-14">
         <SectionTitle
           subHeading={"Check it Out"}
           heading={"Dish of the Week"}
@@ -14,9 +14,9 @@ const Featured = () => {
         <div className="container mx-auto px-10 my-12">
           <div className="md:flex justify-center items-center gap-12">
             <div>
-              <img src={featuredImg} alt="" />
+              <img src={featuredImg} className="rounded-md" alt="" />
             </div>
-            <div className="space-y-2 text-center">
+            <div className="space-y-2 text-center mt-4">
               <p className="text-sm text-gray-400">{moment().format('MMMM Do, YYYY')}</p>
               <h4 className="text-2xl font-cinzel">Saffron-infused Risotto</h4>
               <p className="font-inter text-center">

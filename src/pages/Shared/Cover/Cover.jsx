@@ -2,20 +2,28 @@ import { Parallax, Background } from "react-parallax";
 
 const Cover = ({ img, title, subTitle }) => {
   return (
-    <Parallax bgImage={img} strength={300}>
+    <Parallax
+      bgImage={img}
+      bgImageStyle={{ objectFit: "cover" }}
+      strength={300}
+    >
       <div
-        className="hero min-h-screen"
+        className="hero md:min-h-screen"
         style={{
           height: 500,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-          <div className="hero-overlay bg-opacity-40 w-1/2 h-1/2"></div>
-          <div className="hero-content text-white text-center">
-            <div className="max-w-md font-cinzel">
-              <h1 className="mb-5 text-5xl font-bold uppercase">{title}</h1>
-              <p className="mb-5">{subTitle}</p>
-            </div>
+        <div className="hero-overlay bg-opacity-40 w-11/12 h-3/5 md:w-1/2 md:h-1/2"></div>
+        <div className="hero-content text-white text-center">
+          <div className="max-w-md font-cinzel p-8">
+            <h1 className="mb-5 text-3xl md:text-5xl font-bold uppercase">
+              {title}
+            </h1>
+            <p className="mb-5 text-xs md:text-base">{subTitle}</p>
           </div>
+        </div>
       </div>
     </Parallax>
   );

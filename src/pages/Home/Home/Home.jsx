@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
-import AboutUs from "../CallUs/CallUs";
+import AboutUs from "../AboutUs/AboutUs";
 import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";

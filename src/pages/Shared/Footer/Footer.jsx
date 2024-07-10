@@ -5,12 +5,12 @@ const Footer = () => {
   return (
     <footer className="text-white font-inter">
       <div className="flex md:flex-row flex-col font-medium text-gray-400">
-        <div className="bg-[#1F2937] md:w-1/2 flex flex-col items-center p-12 space-y-1">
+        <div className="bg-[#1F2937] md:w-1/2 flex flex-col items-center p-12 space-y-1 text-sm md:text-base">
           <h3>Contact us</h3>
-          <p>123 New Colony Street, P21, Bangladesh</p>
           <p>+88 123456789</p>
           <p>Mon - Fri: 08:00 - 22:00</p>
           <p>Sat - Sun: 10:00 - 23:00</p>
+          <p>123 New Colony Street, Bangladesh</p>
         </div>
         <div className="bg-[#111827] md:w-1/2 flex flex-col items-center p-12 space-y-2">
           <h3>Follow Us</h3>

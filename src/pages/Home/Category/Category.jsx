@@ -21,14 +21,14 @@ const Category = () => {
 
   return (
     <section>
-      <div className="max-w-7xl mx-auto px-10 font-cinzel">
+      <div className="max-w-7xl mx-auto font-cinzel">
         <SectionTitle
           heading={"Order Online"}
           subHeading={"From 11:00am to 10:00pm"}
         ></SectionTitle>
         <Swiper
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={10}
           pagination={{
             clickable: true,
           }}
@@ -40,53 +40,53 @@ const Category = () => {
             disableOnInteraction: false,
           }}
         >
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div className="cursor-pointer" onClick={() => handleLink("salad")}>
               <img src={slide1} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Salad
               </h3>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div
               className="cursor-pointer"
               onClick={() => handleLink("desserts")}
             >
               <img src={slide2} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Desserts
               </h3>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div className="cursor-pointer" onClick={() => handleLink("soups")}>
               <img src={slide3} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Soups
               </h3>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div className="cursor-pointer" onClick={() => handleLink("pizza")}>
               <img src={slide4} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Pizza
               </h3>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div className="cursor-pointer" onClick={() => handleLink("salad")}>
               <img src={slide5} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Salad
               </h3>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="py-16">
+          <SwiperSlide className="pb-12 md:py-16">
             <div className="cursor-pointer" onClick={() => handleLink("soups")}>
               <img src={slide3} alt="" />
-              <h3 className="text-4xl text-white uppercase text-center -mt-12">
+              <h3 className="text-xl md:text-4xl text-white uppercase text-center -mt-6 md:-mt-12">
                 Soups
               </h3>
             </div>
