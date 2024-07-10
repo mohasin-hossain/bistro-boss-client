@@ -23,7 +23,7 @@ const Testimonials = () => {
     <section className="my-20 max-w-7xl mx-auto px-10">
       <SectionTitle
         heading="Testimonials"
-        subHeading="What Our Clients Say"
+        subHeading="What Our Customer's Say"
       ></SectionTitle>
 
       <Swiper

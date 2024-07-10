@@ -30,6 +30,9 @@ const NavBar = () => {
       <li>
         <NavLink to="/order/salad">Order Food</NavLink>
       </li>
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
+      </li>
       {cart.length > 0 && (
         <li>
           <NavLink to="/dashboard/cart">
@@ -128,7 +131,7 @@ const NavBar = () => {
           </div>
         ) : (
           <NavLink
-            className="btn bg-[#D1A054] hover:bg-[#D1A054] rounded-none text-white text-base uppercase tracking-wider"
+            className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] rounded-none text-white text-base tracking-wider"
             to="/login"
           >
             Login

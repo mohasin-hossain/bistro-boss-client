@@ -22,6 +22,7 @@ import Order from "../pages/Order/Order/Order";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "menu",
         element: <Menu></Menu>,
+      },
+      {
+        path: "contact",
+        element: <Contact></Contact>,
       },
       {
         path: "login",
