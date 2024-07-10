@@ -38,8 +38,8 @@ const OrderTab = ({ foods }) => {
         className="mySwiper"
       >
         {chunkedFoods.map((slideFoods, index) => (
-          <SwiperSlide key={index} className="mb-16 px-16">
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
+          <SwiperSlide key={index} className="mb-16 px-12 md:px-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
               {slideFoods.map((item) => (
                 <FoodCard key={item._id} item={item}></FoodCard>
               ))}

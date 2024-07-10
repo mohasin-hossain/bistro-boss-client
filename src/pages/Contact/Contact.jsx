@@ -55,7 +55,7 @@ const Contact = () => {
       ></SectionTitle>
 
       <div className="max-w-6xl px-10 mx-auto mb-20">
-        <form className="bg-[#F3F3F3] p-12">
+        <form className="bg-[#F3F3F3] p-6 md:p-12">
           <div className="flex md:flex-row flex-col gap-4 mb-2">
             <div className="form-control md:w-1/2">
               <label className="label">

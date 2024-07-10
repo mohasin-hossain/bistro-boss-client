@@ -6,7 +6,8 @@ import useCart from "../../../hooks/useCart";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import LogoBistroBoss from '../../../assets/Logo Bistro Boss White.png';
+import LogoBistroBoss from "../../../assets/Logo Bistro Boss White.png";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -33,23 +34,11 @@ const NavBar = () => {
       <li>
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
-      {cart.length > 0 && (
-        <li>
-          <NavLink to="/dashboard/cart">
-            <button className="btn px-2 relative">
-              <IoCart className="text-3xl" />
-              <div className="badge badge-secondary absolute text-sm -top-2 -right-4">
-                +{cart.length}
-              </div>
-            </button>
-          </NavLink>
-        </li>
-      )}
     </>
   );
 
   return (
-    <div className="navbar bg-opacity-30 fixed z-10 text-white bg-black md:px-10 px-5 font-cinzel font-medium">
+    <div className="navbar bg-opacity-30 fixed z-10 text-white bg-black md:px-10 font-cinzel font-medium">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -76,8 +65,8 @@ const NavBar = () => {
           </ul>
         </div>
         <NavLink to="/" className="btn btn-ghost text-xl flex items-center">
-          <img className="w-10" src={logo} alt="" />
-          <img className="w-40" src={LogoBistroBoss} alt="" />
+          <img className="w-10 hidden md:block" src={logo} alt="" />
+          <img className="w-32 md:w-40" src={LogoBistroBoss} alt="" />
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -87,15 +76,27 @@ const NavBar = () => {
       </div>
 
       <div className="navbar-end">
+        {cart.length > 0 && (
+            <NavLink to="/dashboard/cart">
+              <button className="btn px-2 relative mr-6">
+                <IoCart className="text-3xl" />
+                <div className="badge badge-secondary absolute text-sm -top-2 -right-4">
+                  +{cart.length}
+                </div>
+              </button>
+            </NavLink>
+        )}
         {user ? (
           <div className="dropdown dropdown-hover relative">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost border-2 border-white m-1 rounded-none"
+              className="btn btn-ghost border-2 border-white rounded-none"
             >
-              {user?.displayName}
-              <RiArrowDropDownLine className="text-3xl" />
+              
+              <span className="hidden md:block">{user?.displayName}</span>
+              <span className="block md:hidden"><FaRegUserCircle className="text-2xl" /></span>
+              <RiArrowDropDownLine className="text-3xl hidden md:block" />
             </div>
             <ul
               tabIndex={0}
@@ -131,7 +132,7 @@ const NavBar = () => {
           </div>
         ) : (
           <NavLink
-            className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] rounded-none text-white text-base tracking-wider"
+            className="btn text-xs bg-gradient-to-r from-[#835D23] to-[#B58130] rounded-none text-white md:text-base tracking-wider"
             to="/login"
           >
             Login

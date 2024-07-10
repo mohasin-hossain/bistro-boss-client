@@ -5,8 +5,9 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { FaEye } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
+import { MdReviews } from "react-icons/md";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
@@ -77,27 +78,37 @@ const FoodCard = ({ item }) => {
             ${price}
           </p>
         </figure>
-        <div className="card-body grow">
-          <h2 className="card-title mx-auto font-cinzel font-medium">{name}</h2>
+        <div className="p-2 md:p-4 grow">
+          <h2 className="text-xl mb-4 text-center mx-auto font-cinzel font-medium">
+            {name}
+          </h2>
           <p className="text-gray-500 font-inter">
             {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
           </p>
-          <div className="card-actions justify-between mt-8">
-
+          <div className="card-actions items-center justify-between mt-8">
             {/* Reviews Modal */}
             <button
-              className="btn font-cinzel btn-ghost link uppercase text-[#BB8506]"
+              className="btn font-cinzel text-xs btn-ghost link uppercase text-[#BB8506]"
               onClick={() =>
                 document.getElementById(`my_modal_${_id}`).showModal()
               }
             >
-              <FaEye />
+              <MdReviews className="text-2xl" />
               Reviews
+            </button>
+
+            <button
+              onClick={handleAddToCart}
+              className="btn uppercase text-[#BB8506] font-cinzel"
+            >
+              <FaCartPlus className="text-2xl" />
             </button>
 
             <dialog id={`my_modal_${_id}`} className="modal">
               <div className="modal-box w-11/12 max-w-xl border-4 border-[#D1A054]">
-                <h3 className="font-bold text-lg font-cinzel">Reviews of {name}</h3>
+                <h3 className="font-bold text-lg font-cinzel">
+                  Reviews of {name}
+                </h3>
                 <div className="py-4">
                   {reviews.length > 0 ? (
                     reviews.map((review, index) => (
@@ -138,12 +149,12 @@ const FoodCard = ({ item }) => {
             </dialog>
             {/* Reviews Modal */}
 
-            <button
+            {/* <button
               onClick={handleAddToCart}
               className="btn btn-outline border-0 border-b-2 border-[#BB8506] bg-[#E8E8E8] uppercase text-[#BB8506] font-cinzel"
             >
               Add to Cart
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

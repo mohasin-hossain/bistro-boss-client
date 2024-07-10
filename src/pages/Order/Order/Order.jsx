@@ -35,7 +35,7 @@ const Order = () => {
 
       <div className="max-w-7xl mx-auto my-8 text-center">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <div className="font-cinzel font-semibold">
+          <div className="font-cinzel font-semibold text-xs md:text-base text-[#B58130]">
           <TabList>
             <Tab>Salad</Tab>
             <Tab>Pizza</Tab>
