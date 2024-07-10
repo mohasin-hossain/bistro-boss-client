@@ -11,7 +11,7 @@ const Payment = () => {
     <div>
       <SectionTitle heading="Payment" subHeading="Pay to Eat"></SectionTitle>
 
-      <div className="px-12">
+      <div className="md:px-12">
         <Elements stripe={stripePromise}>
           <CheckOutForm></CheckOutForm>
         </Elements>

@@ -52,10 +52,10 @@ const AddReview = () => {
     <div>
       <SectionTitle
         heading="Add a Review"
-        subHeading="Sharing is Caring"
+        subHeading="Help us Improve!"
       ></SectionTitle>
 
-      <div className="px-12">
+      <div className="md:px-12">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 bg-[#F3F3F3] p-8 mb-12">
           <div className="flex justify-center flex-col items-center">
             <h3 className="text-3xl uppercase mb-4">Rate Us!</h3>

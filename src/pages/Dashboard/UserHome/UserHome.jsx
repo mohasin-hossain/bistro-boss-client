@@ -19,7 +19,7 @@ const UserHome = () => {
   });
 
   return (
-    <div className="p-12">
+    <div className="py-12 px-2 md:p-12">
       <h3 className="text-3xl">
         Welcome
         <span className="text-orange-500 font-bold">
@@ -28,20 +28,20 @@ const UserHome = () => {
         </span>
       </h3>
 
-      <div className="flex mt-4">
-        <div className="w-1/2 flex justify-center items-center bg-[#FFEDD5] border-r-4 border-[#D1A054] p-20">
+      <div className="flex md:flex-row flex-col mt-4">
+        <div className="md:w-1/2 flex justify-center items-center bg-[#FFEDD5] border-b-4 md:border-r-4 md:border-b-0 border-[#D1A054] p-20">
           <div>
             <img
-              className=" w-48 rounded-full border-4 border-[#D1A054]"
+              className="w-48 rounded-full border-4 border-[#D1A054]"
               src={user.photoURL}
               alt=""
             />
             <h3 className="text-3xl text-center mt-4">{user?.displayName}</h3>
           </div>
         </div>
-        <div className="w-1/2 bg-[#FEF9C3] p-20">
+        <div className="md:w-1/2 bg-[#FEF9C3] p-20 text-center md:text-left">
           <h2 className="text-3xl">Your Activities</h2>
-          <div className="space-y-2 mt-4">
+          <div className="space-y-2 mt-4 flex flex-col items-center md:items-start">
             <p className="flex gap-2 font-semibold text-[#0088FE]">
               <BsMinecart className="text-2xl" />
               Orders: {stats.orders}

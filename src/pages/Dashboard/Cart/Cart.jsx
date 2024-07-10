@@ -37,10 +37,10 @@ const Cart = () => {
   };
 
   return (
-    <div className="p-12">
-      <div className="flex justify-between">
-        <h3 className="text-3xl font-semibold">Total Order: {cart.length}</h3>
-        <h3 className="text-3xl font-semibold">
+    <div className="py-12 md:px-12 px-2">
+      <div className="flex md:flex-row flex-col items-end justify-between">
+        <h3 className="text-base md:text-3xl font-semibold">Items: {cart.length}</h3>
+        <h3 className="text-base md:text-3xl font-semibold">
           Total Price: ${totalPrice.toFixed(2)}
         </h3>
         {cart.length ? (
@@ -65,7 +65,7 @@ const Cart = () => {
           <thead className="bg-[#D1A054] text-white">
             <tr>
               <th>#</th>
-              <th>Item Image</th>
+              <th className="hidden md:table-cell">Item Image</th>
               <th>Item Name</th>
               <th>Price</th>
               <th>Delete</th>
@@ -75,14 +75,14 @@ const Cart = () => {
             {cart.map((item, idx) => (
               <tr key={item._id} >
                 <th>{idx + 1}</th>
-                <td>
+                <td className="hidden md:table-cell">
                   <div className="flex items-center gap-3">
                     <div>
                       <img className="w-12 h-12 rounded-md" src={item.image} alt="Item image" />
                     </div>
                   </div>
                 </td>
-                <td>{item.name}</td>
+                <td className="text-xs md:text-base">{item.name}</td>
                 <td>${item.price}</td>
                 <th>
                   <button
@@ -97,7 +97,7 @@ const Cart = () => {
           </tbody>
         </table>
         {!cart.length && (
-          <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto text-center">
+          <div className="text-2xl font-thin mt-20 md:w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto text-center">
             <PiSmileySadLight className="text-3xl mr-2" />
             Your Cart is Hungry! Fill it Up and Stay Healthy!
           </div>

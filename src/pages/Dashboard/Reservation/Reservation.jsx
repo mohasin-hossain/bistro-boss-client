@@ -57,7 +57,7 @@ const Reservation = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="font-inter font-normal">
         {/* Menu Name */}
-        <div className="px-12">
+        <div className="">
           <label className="form-control w-full">
             <div className="label">
               <span className="label-text">
@@ -79,36 +79,36 @@ const Reservation = () => {
           </label>
         </div>
 
-        <div className="flex gap-3 justify-center mt-4">
-          <label className="form-control w-full max-w-xs">
+        <div className="flex md:flex-row flex-col gap-3 justify-center mt-4">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Date*</span>
             </div>
             <input
               {...register("date")}
               type="date"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full md:max-w-sm"
             />
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Time*</span>
             </div>
             <input
               {...register("time")}
               type="time"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full md:max-w-sm"
             />
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Guest*</span>
             </div>
             <select
               {...register("guest")}
-              className="select select-bordered w-full max-w-xs"
+              className="select select-bordered w-full md:max-w-sm"
               defaultValue="1 Person"
             >
               <option>1 Person</option>
@@ -119,8 +119,8 @@ const Reservation = () => {
           </label>
         </div>
 
-        <div className="flex gap-3 justify-center mt-4">
-          <label className="form-control w-full max-w-xs">
+        <div className="flex md:flex-row flex-col gap-3 justify-center mt-4">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Name*</span>
             </div>
@@ -129,11 +129,11 @@ const Reservation = () => {
               defaultValue={user?.displayName}
               type="text"
               placeholder="Your Name"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full md:max-w-sm"
             />
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Email*</span>
             </div>
@@ -142,11 +142,11 @@ const Reservation = () => {
               defaultValue={user?.email}
               type="email"
               placeholder="Your Email"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full md:max-w-sm"
             />
           </label>
 
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full md:max-w-sm">
             <div className="label">
               <span className="label-text">Phone*</span>
             </div>
@@ -154,7 +154,7 @@ const Reservation = () => {
               {...register("reserverPhone")}
               type="text"
               placeholder="Phone Number"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full md:max-w-sm"
             />
           </label>
         </div>

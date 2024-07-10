@@ -108,7 +108,7 @@ const CheckOutForm = () => {
   };
 
   return (
-    <div className="px-32">
+    <div className="px-8 md:px-32">
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{

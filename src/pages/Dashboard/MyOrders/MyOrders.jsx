@@ -25,17 +25,17 @@ const MyOrders = () => {
         subHeading="At a Glance"
       ></SectionTitle>
 
-      <div className="overflow-x-auto px-12">
-        <table className="table">
+      <div className="overflow-x-auto md:px-12">
+        <table className="table min-w-full">
           {/* head */}
           <thead className="bg-[#D1A054] text-white">
             <tr>
               <th>#</th>
-              <th>Email</th>
-              <th>Transaction ID</th>
+              <th className="hidden lg:table-cell">Email</th>
+              <th className="hidden lg:table-cell">Transaction ID</th>
               <th>Ordered Items</th>
               <th>Total Price</th>
-              <th>Payment Date & Time</th>
+              <th className="hidden lg:table-cell">Payment Date & Time</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -50,8 +50,8 @@ const MyOrders = () => {
                 }
               >
                 <th>{idx + 1}</th>
-                <td>{payment.email}</td>
-                <td>{payment.transactionId}</td>
+                <td className="hidden lg:table-cell">{payment.email}</td>
+                <td className="hidden lg:table-cell">{payment.transactionId}</td>
                 <td>
                   {/* User Order List Modal */}
                   <button
@@ -84,10 +84,10 @@ const MyOrders = () => {
                   </dialog>
                 </td>
                 <td>${payment.price}</td>
-                <td>{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
+                <td className="hidden lg:table-cell">{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
                 <td
                   className={
-                    payment.status === "pending" || payment.status == "failed"
+                    payment.status === "pending" || payment.status === "failed"
                       ? "text-red-500 font-semibold uppercase"
                       : "text-green-500 uppercase font-bold"
                   }

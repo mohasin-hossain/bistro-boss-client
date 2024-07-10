@@ -24,16 +24,15 @@ const MyBooking = () => {
         subHeading="Excellent Ambience"
       ></SectionTitle>
 
-      <div className="overflow-x-auto px-12">
-        <table className="table">
+      <div className="overflow-x-auto md:px-12">
+        <table className="table text-xs md:text-base">
           {/* head */}
           <thead className="bg-[#D1A054] text-white">
             <tr>
-              <th>#</th>
-              <th>Customer</th>
+              <th className="hidden lg:table-cell">#</th>
+              <th className="hidden lg:table-cell">Customer</th>
               <th>Booked Item</th>
-              <th>Quantity</th>
-              <th>Date</th>
+              <th className="hidden lg:table-cell">Quantity</th>
               <th>Time</th>
               <th>Status</th>
             </tr>
@@ -46,12 +45,14 @@ const MyBooking = () => {
                   booking.status === "confirmed" ? "bg-green-100" : "bg-red-100"
                 }
               >
-                <th>{idx + 1}</th>
-                <td>{booking.name}</td>
+                <th className="hidden lg:table-cell">{idx + 1}</th>
+                <td className="hidden lg:table-cell">{booking.name}</td>
                 <td>{booking.menu}</td>
-                <td>{booking.guest}</td>
-                <td>{booking.date}</td>
-                <td>{moment(booking.time, "HH:mm").format("hh:mm A")}</td>
+                <td className="hidden lg:table-cell">{booking.guest}</td>
+                <td >
+                  {booking.date} at {" "}
+                  {moment(booking.time, "HH:mm").format("hh:mm A")}
+                </td>
                 <td
                   className={
                     booking.status == "confirmed"
