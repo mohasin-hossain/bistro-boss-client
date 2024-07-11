@@ -14,13 +14,35 @@ import { SlCalender } from "react-icons/sl";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import Logo from "../assets/Logo Bistro Boss.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { TfiMenuAlt } from "react-icons/tfi";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
   const [isAdmin] = useAdmin();
+
+  // Making sidebar closed by default in smaller devices
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setOpen(false);
+      } else {
+        setOpen(true);
+      }
+    };
+
+    // Initialize the state based on screen size
+    handleResize();
+
+    // Added resize event listener to check whether the user resize the screen or not, if resize then trigger the handleResize again
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="flex font-cinzel font-medium">
