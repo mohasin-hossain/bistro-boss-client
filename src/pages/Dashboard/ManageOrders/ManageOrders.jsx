@@ -65,19 +65,19 @@ const ManageOrders = () => {
         subHeading="At a Glance"
       ></SectionTitle>
 
-      <div className="overflow-x-auto px-12 mb-12">
-        <table className="table">
+      <div className="overflow-x-auto md:px-12 mb-12">
+        <table className="table table-xs md:table-md">
           {/* head */}
           <thead className="bg-[#D1A054] text-white">
             <tr className="text-center">
-              <th>#</th>
-              <th>Email</th>
-              <th>Transaction ID</th>
-              <th>Ordered Items</th>
-              <th>Total Price</th>
-              <th>Payment Time</th>
+              <th className="hidden md:table-cell">#</th>
+              <th className="hidden lg:table-cell">Email</th>
+              <th className="hidden lg:table-cell">Transaction ID</th>
+              <th>Items</th>
+              <th className="hidden md:table-cell">Total Price</th>
+              <th className="hidden lg:table-cell">Payment Time</th>
               <th>Status</th>
-              <th>Delete</th>
+              <th className="hidden md:table-cell">Delete</th>
             </tr>
           </thead>
           <tbody className="font-inter font-normal">
@@ -90,9 +90,9 @@ const ManageOrders = () => {
                     : "bg-green-100"
                 }
               >
-                <th>{idx + 1}</th>
-                <td>{payment.email}</td>
-                <td>{payment.transactionId}</td>
+                <th className="hidden md:table-cell">{idx + 1}</th>
+                <td className="hidden lg:table-cell">{payment.email}</td>
+                <td className="hidden lg:table-cell">{payment.transactionId}</td>
                 <td>
                   
                   {/* User Order List Modal */}
@@ -121,15 +121,15 @@ const ManageOrders = () => {
                   </dialog>
 
                 </td>
-                <td>${payment.price}</td>
-                <td>{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
+                <td className="hidden md:table-cell">${payment.price}</td>
+                <td className="hidden lg:table-cell">{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
                 <td>
                   <select
                     onChange={(e) =>
                       handleOrderStatus(payment, e.target.value)
                     }
                     value={payment.status}
-                    className={`select select-bordered border-[#D1A054] border-2 rounded-md w-full max-w-md uppercase ${
+                    className={`select select-bordered border-[#D1A054] border-2 rounded-md w-full max-w-sm uppercase ${
                       payment.status === "pending" ||
                       payment.status === "failed"
                         ? "border-red-500 text-red-500"
@@ -146,7 +146,7 @@ const ManageOrders = () => {
                     <option value="delivered">Delivered</option>
                   </select>
                 </td>
-                <td className="text-center">
+                <td className="text-center hidden md:table-cell">
                   <button
                     onClick={() => handleDeleteOrder(payment)}
                     className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90"

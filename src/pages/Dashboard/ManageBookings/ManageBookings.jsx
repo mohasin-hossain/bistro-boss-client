@@ -98,19 +98,19 @@ const ManageBookings = () => {
         subHeading="At a glance"
       ></SectionTitle>
 
-      <div className="overflow-x-auto px-12 mb-12">
-        <table className="table">
+      <div className="overflow-x-auto md:px-12 mb-12">
+        <table className="table table-xs lg:table-md">
           {/* head */}
           <thead className="bg-[#D1A054] text-white">
             <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
+              <th className="hidden lg:table-cell">#</th>
+              <th className="hidden lg:table-cell">Name</th>
+              <th className="hidden lg:table-cell">Email</th>
               <th>Booked Item</th>
-              <th>Quantity</th>
-              <th>Date</th>
+              <th className="hidden lg:table-cell">Quantity</th>
               <th>Time</th>
-              <th>Status</th>
+              {/* <th>Time</th> */}
+              <th className="hidden lg:table-cell">Status</th>
               <th>Confirm</th>
               <th>Cancel</th>
               <th>Delete</th>
@@ -124,18 +124,17 @@ const ManageBookings = () => {
                   booking.status === "confirmed" ? "bg-green-100" : "bg-red-100"
                 }
               >
-                <th>{idx + 1}</th>
-                <td>{booking.name}</td>
-                <td>{booking.email}</td>
+                <th className="hidden lg:table-cell">{idx + 1}</th>
+                <td className="hidden lg:table-cell">{booking.name}</td>
+                <td className="hidden lg:table-cell">{booking.email}</td>
                 <td>{booking.menu}</td>
-                <td>{booking.guest}</td>
-                <td>{booking.date}</td>
-                <td>{moment(booking.time, "HH:mm").format("hh:mm A")}</td>
+                <td className="hidden lg:table-cell">{booking.guest}</td>
+                <td className="text-xs">{booking.date} at {moment(booking.time, "HH:mm").format("hh:mm A")}</td>
                 <td
                   className={
-                    booking.status === "confirmed"
+                    `hidden lg:table-cell ${booking.status === "confirmed"
                       ? "text-green-500 font-bold uppercase"
-                      : "text-red-500 font-semibold uppercase"
+                      : "text-red-500 font-semibold uppercase"}`
                   }
                 >
                   {booking.status}

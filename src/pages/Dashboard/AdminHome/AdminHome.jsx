@@ -14,6 +14,7 @@ import {
   PieChart,
   Pie,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -89,8 +90,8 @@ const AdminHome = () => {
   });
 
   return (
-    <div className="my-8 px-12 flex justify-center items-center flex-col">
-      <h3 className="text-3xl">
+    <div className="my-8 px-2 md:px-12 flex justify-center items-center flex-col">
+      <h3 className="text-sm md:text-3xl">
         Welcome
         <span className="text-orange-500 font-bold">
           {" "}
@@ -98,9 +99,13 @@ const AdminHome = () => {
         </span>
       </h3>
 
-      <div className="stats shadow mt-4 ">
-        <div className="stat">
-          <img className="w-20 rounded-full border-4 border-[#D1A054]" src={user.photoURL} alt="" />
+      <div className="stats shadow mt-4 stats-vertical w-full md:stats-horizontal">
+        <div className="stat block md:hidden lg:block">
+          <img
+            className="w-20 h-20 rounded-full border-4 border-[#D1A054] mx-auto"
+            src={user.photoURL}
+            alt=""
+          />
         </div>
 
         <div className="stat">
@@ -136,35 +141,34 @@ const AdminHome = () => {
         </div>
       </div>
 
-      <div className="flex gap-16 mt-8">
-        <div className="w-1/2">
-          <BarChart
-            width={500}
-            height={400}
-            data={chartData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="category" />
-            <YAxis />
-            <Bar
-              dataKey="quantity"
-              fill="#8884d8"
-              shape={<TriangleBar />}
-              label={{ position: "top" }}
+      <div className="flex items-center lg:flex-row flex-col lg:gap-4 mt-8">
+        <div style={{ width: "100%", height: 400 }} className="lg:w-1/2">
+          <ResponsiveContainer>
+            <BarChart
+              // width={500}
+              // height={400}
+              data={chartData}
+              margin={{
+                left: -30,
+              }}
             >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % 6]} />
-              ))}
-            </Bar>
-          </BarChart>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" />
+              <YAxis />
+              <Bar
+                dataKey="quantity"
+                fill="#8884d8"
+                shape={<TriangleBar />}
+                label={{ position: "top" }}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % 6]} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
-        <div className="w-1/2">
+        <div className="lg:w-1/2 mx-auto">
           <PieChart width={400} height={400}>
             <Pie
               data={pieData}
@@ -172,7 +176,7 @@ const AdminHome = () => {
               cy="50%"
               labelLine={false}
               label={renderCustomizedLabel}
-              outerRadius={180}
+              outerRadius={170}
               fill="#8884d8"
               dataKey="value"
             >

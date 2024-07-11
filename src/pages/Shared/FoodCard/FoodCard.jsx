@@ -83,7 +83,7 @@ const FoodCard = ({ item }) => {
             {name}
           </h2>
           <p className="text-gray-500 font-inter">
-            {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
+            {recipe.length > 70 ? recipe.slice(0, 70) + "..." : recipe}
           </p>
           <div className="card-actions items-center justify-between mt-8">
             {/* Reviews Modal */}

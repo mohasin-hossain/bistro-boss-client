@@ -24,15 +24,22 @@ const Dashboard = () => {
 
   return (
     <div className="flex font-cinzel font-medium">
-      <div onClick={() => setOpen(!open)} className={`p-1 absolute ${open ? "left-56" : "left-0"}`}>
+      <div
+        onClick={() => setOpen(!open)}
+        className={`p-1 absolute z-20 ${open ? "left-56" : "left-0"}`}
+      >
         <button className="p-2 bg-gradient-to-r from-[#835D23] to-[#B58130] text-white hover:bg-opacity-90 rounded-none">
-          {open ? <IoMdClose className="text-2xl" /> : <TfiMenuAlt className="text-2xl" />}
+          {open ? (
+            <IoMdClose className="text-2xl" />
+          ) : (
+            <TfiMenuAlt className="text-2xl" />
+          )}
         </button>
       </div>
 
       {/* Dashboard Sidebar */}
       <div
-        className={`bg-[#D1A054] min-h-screen transition-all duration-500 ${
+        className={`bg-[#D1A054] absolute z-10 md:static min-h-screen transition-all duration-500 ${
           open ? "w-64 opacity-100" : "w-0 opacity-0"
         }`}
       >

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { IoCart } from "react-icons/io5";
+import { IoCart, IoLogInOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import useCart from "../../../hooks/useCart";
@@ -8,6 +8,8 @@ import useAdmin from "../../../hooks/useAdmin";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import LogoBistroBoss from "../../../assets/Logo Bistro Boss White.png";
 import { FaRegUserCircle } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
+import { IoIosLogOut } from "react-icons/io";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -87,11 +89,11 @@ const NavBar = () => {
             </NavLink>
         )}
         {user ? (
-          <div className="dropdown dropdown-hover relative">
+          <div className="dropdown  relative">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost border-2 border-white rounded-none"
+              className="btn border-2 border-white rounded-md"
             >
               
               <span className="hidden md:block">{user?.displayName}</span>
@@ -100,32 +102,35 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu bg-black bg-opacity-40 rounded-none z-[1] w-52 p-4 shadow absolute right-0 text-white space-y-2"
+              className="dropdown-content menu bg-black bg-opacity-40 rounded-none z-[1] w-52 p-4 shadow absolute right-0 text-white space-y-2 mt-4"
             >
               <li>
                 {user && isAdmin && (
                   <NavLink
-                    className="p-0 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
+                    className="px-4 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80 flex justify-between"
                     to="/dashboard/adminHome"
                   >
                     Dashboard
+                    <RxDashboard className="text-2xl" />
                   </NavLink>
                 )}
                 {user && !isAdmin && (
                   <NavLink
-                    className="p-0 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80"
+                    className="px-4 btn btn-ghost rounded-none bg-[#D1A054] hover:bg-[#D1A054] hover:bg-opacity-80 flex justify-between"
                     to="/dashboard/userHome"
                   >
                     Dashboard
+                    <RxDashboard className="text-2xl" />
                   </NavLink>
                 )}
               </li>
               <li>
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-ghost rounded-none bg-red-500 hover:bg-red-500 hover:bg-opacity-80"
+                  className="btn btn-ghost rounded-none bg-red-500 hover:bg-red-500 hover:bg-opacity-80 flex justify-between"
                 >
                   LogOut
+                  <IoIosLogOut className="text-2xl" />
                 </button>
               </li>
             </ul>
@@ -136,6 +141,7 @@ const NavBar = () => {
             to="/login"
           >
             Login
+            <IoLogInOutline className="text-2xl" />
           </NavLink>
         )}
       </div>

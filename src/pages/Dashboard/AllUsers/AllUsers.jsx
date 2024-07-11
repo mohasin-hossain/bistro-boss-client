@@ -67,13 +67,13 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="px-12">
+    <div className="md:px-12">
       <SectionTitle
         heading="Manage All Users"
         subHeading="Registered Users"
       ></SectionTitle>
       <div>
-        <h3>Total Users: {users.length}</h3>
+        <h3 className="px-4">Total Users: {users.length}</h3>
 
         <div className="overflow-x-auto">
           <table className="table">
@@ -81,21 +81,21 @@ const AllUsers = () => {
             <thead className="bg-[#D1A054] text-white">
               <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th className="hidden md:table-cell">Name</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
+                <th className="text-center">Role</th>
+                <th className="hidden md:table-cell">Action</th>
               </tr>
             </thead>
             <tbody className="font-inter font-normal">
               {users.map((user, idx) => (
                 <tr key={user._id}>
                   <th>{idx + 1}</th>
-                  <td>{user.name}</td>
+                  <td className="hidden md:table-cell">{user.name}</td>
                   <td>{user.email}</td>
-                  <td>
+                  <td className="text-center">
                     {user.role === "admin" ? (
-                      <span className="font-bold">Admin</span>
+                      <span className="font-bold text-green-500 p-2 bg-green-100 rounded-md">Admin</span>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
@@ -105,7 +105,7 @@ const AllUsers = () => {
                       </button>
                     )}
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <button
                       onClick={() => handleDeleteUser(user)}
                       className="btn btn-sm text-white bg-red-500 hover:bg-red-500 hover:bg-opacity-90"

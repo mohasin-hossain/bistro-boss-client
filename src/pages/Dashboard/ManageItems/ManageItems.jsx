@@ -44,16 +44,16 @@ const ManageItems = () => {
         subHeading="Hurry Up"
       ></SectionTitle>
 
-      <div className="px-12">
-        <h3>Total Items: {menu.length}</h3>
+      <div className="md:px-12">
+        <h3 className="px-4">Total Items: {menu.length}</h3>
 
         <div className="overflow-x-auto">
-          <table className="table">
+          <table className="table table-xs md:table-md">
             {/* head */}
             <thead className="bg-[#D1A054] text-white">
               <tr>
                 <th>#</th>
-                <th>Item Image</th>
+                <th className="hidden md:table-cell">Item Image</th>
                 <th>Item Name</th>
                 <th>Price</th>
                 <th>Update</th>
@@ -64,7 +64,7 @@ const ManageItems = () => {
               {menu.map((item, idx) => (
                 <tr key={item._id}>
                   <td>{idx + 1}</td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="flex items-center gap-3">
                       <img
                         className="w-12 h-12 rounded-md"
