@@ -8,6 +8,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaCartPlus } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import { MdReviews } from "react-icons/md";
+import useAdmin from "../../../hooks/useAdmin";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
@@ -17,6 +18,7 @@ const FoodCard = ({ item }) => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [, refetch] = useCart();
+  const [isAdmin] = useAdmin();
 
   // Reviews Modal
   const { data: reviews = [] } = useQuery({
@@ -29,6 +31,12 @@ const FoodCard = ({ item }) => {
   // Reviews Modal
 
   const handleAddToCart = () => {
+
+    if (isAdmin) {
+      Swal.fire("Admin Can't purchase! Please Login as a Customer.");
+      return;
+    }
+
     if (user && user.email) {
       // send to the database
       const cartItem = {
@@ -104,7 +112,10 @@ const FoodCard = ({ item }) => {
               <FaCartPlus className="text-2xl" />
             </button>
 
-            <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
+            <dialog
+              id={`my_modal_${_id}`}
+              className="modal modal-bottom sm:modal-middle"
+            >
               <div className="modal-box border-[#D1A054]">
                 <h3 className="font-bold text-lg font-cinzel">
                   Reviews of {name}
@@ -133,7 +144,7 @@ const FoodCard = ({ item }) => {
                   )}
                 </div>
                 <div className="modal-action sticky -bottom-4 bg-base-200 p-4 font-cinzel">
-                  <Link to="/dashboard/review" state={{menuName: name}}>
+                  <Link to="/dashboard/review" state={{ menuName: name }}>
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white ">
                       Add a Review
                     </button>
@@ -145,11 +156,9 @@ const FoodCard = ({ item }) => {
                     </button>
                   </form>
                 </div>
-
               </div>
             </dialog>
             {/* Reviews Modal */}
-
           </div>
         </div>
       </div>

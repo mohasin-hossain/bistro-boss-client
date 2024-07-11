@@ -91,7 +91,6 @@ const CheckOutForm = () => {
         };
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log("Payment Saved", res.data);
         refetch();
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({
@@ -136,7 +135,7 @@ const CheckOutForm = () => {
       </form>
       <p className="text-red-500">{error}</p>
       {transactionId && (
-        <p className="text-green-500">Your Transaction Id: {transactionId}</p>
+        <p className="text-green-500 mt-6">Your Transaction Id: {transactionId}</p>
       )}
     </div>
   );
