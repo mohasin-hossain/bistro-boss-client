@@ -104,8 +104,8 @@ const FoodCard = ({ item }) => {
               <FaCartPlus className="text-2xl" />
             </button>
 
-            <dialog id={`my_modal_${_id}`} className="modal">
-              <div className="modal-box w-11/12 max-w-xl border-4 border-[#D1A054]">
+            <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
+              <div className="modal-box border-[#D1A054]">
                 <h3 className="font-bold text-lg font-cinzel">
                   Reviews of {name}
                 </h3>
@@ -133,7 +133,7 @@ const FoodCard = ({ item }) => {
                   )}
                 </div>
                 <div className="modal-action sticky -bottom-4 bg-base-200 p-4 font-cinzel">
-                  <Link to="/dashboard/review">
+                  <Link to="/dashboard/review" state={{menuName: name}}>
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white ">
                       Add a Review
                     </button>
@@ -145,16 +145,11 @@ const FoodCard = ({ item }) => {
                     </button>
                   </form>
                 </div>
+
               </div>
             </dialog>
             {/* Reviews Modal */}
 
-            {/* <button
-              onClick={handleAddToCart}
-              className="btn btn-outline border-0 border-b-2 border-[#BB8506] bg-[#E8E8E8] uppercase text-[#BB8506] font-cinzel"
-            >
-              Add to Cart
-            </button> */}
           </div>
         </div>
       </div>

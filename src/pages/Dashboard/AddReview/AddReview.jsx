@@ -1,7 +1,6 @@
 import SectionTitle from "../../../components/SectionTitle";
 import { useForm } from "react-hook-form";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -9,11 +8,14 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { IoRocket } from "react-icons/io5";
 import useAuth from "../../../hooks/useAuth";
+import { useLocation } from "react-router-dom";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const axiosSecure = useAxiosSecure();
   const {user} = useAuth();
+  const location = useLocation();
+  const {menuName} = location.state || {};
 
   const { data: menuNames = [] } = useQuery({
     queryKey: ["menu-names"],
@@ -72,7 +74,7 @@ const AddReview = () => {
               <span className="label-text">Which Menu you liked most?</span>
             </div>
             <select
-              defaultValue="default"
+              defaultValue={menuName || "default"}
               {...register("menuName")}
               className="select select-bordered w-full max-w-xs"
             >
@@ -96,6 +98,7 @@ const AddReview = () => {
                 type="text"
                 placeholder="Name"
                 className="input input-bordered w-full"
+                defaultValue={user.displayName}
               />
             </label>
           </div>
