@@ -79,7 +79,7 @@ const Login = () => {
                 </h2>
               </div>
             </div>
-            <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center">
+            <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
                 <form onSubmit={handleLogin} className="card-body">

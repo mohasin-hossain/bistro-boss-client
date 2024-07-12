@@ -99,7 +99,7 @@ const MyOrders = () => {
           </tbody>
         </table>
         {!payments.length && (
-          <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto">
+          <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto text-center">
             <PiSmileySadLight className="text-3xl mr-2" />
             Invest in your health — make a payment today!
           </div>
