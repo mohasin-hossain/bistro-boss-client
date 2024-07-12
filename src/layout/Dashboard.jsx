@@ -48,7 +48,7 @@ const Dashboard = () => {
     <div className="flex font-cinzel font-medium">
       <div
         onClick={() => setOpen(!open)}
-        className={`p-1 absolute z-20 ${open ? "left-56" : "left-0"}`}
+        className={`p-1 absolute z-20 transition-all duration-500 ${open ? "left-56" : "left-0"}`}
       >
         <button className="p-2 bg-gradient-to-r from-[#835D23] to-[#B58130] text-white hover:bg-opacity-90 rounded-none">
           {open ? (

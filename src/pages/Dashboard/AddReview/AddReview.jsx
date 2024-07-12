@@ -13,9 +13,9 @@ import { useLocation } from "react-router-dom";
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const location = useLocation();
-  const {menuName} = location.state || {};
+  const { menuName } = location.state || {};
 
   const { data: menuNames = [] } = useQuery({
     queryKey: ["menu-names"],
@@ -25,7 +25,12 @@ const AddReview = () => {
     },
   });
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     const review = {
       name: data.name,
@@ -58,7 +63,10 @@ const AddReview = () => {
       ></SectionTitle>
 
       <div className="md:px-12">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 bg-[#F3F3F3] p-8 mb-12">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-2 bg-[#F3F3F3] p-8 mb-12"
+        >
           <div className="flex justify-center flex-col items-center">
             <h3 className="text-3xl uppercase mb-4">Rate Us!</h3>
             <Rating
@@ -74,20 +82,23 @@ const AddReview = () => {
               <span className="label-text">Which Menu you liked most?</span>
             </div>
             <select
-              defaultValue={menuName || "default"}
-              {...register("menuName")}
+              defaultValue={menuName || ""}
+              {...register("menuName", { required: true })}
               className="select select-bordered w-full max-w-xs"
             >
-              <option disabled value="default">
+              <option disabled value="">
                 Select One
               </option>
               {menuNames.map((menuName, idx) => (
                 <option key={idx}>{menuName.name}</option>
               ))}
             </select>
+            {errors.menuName?.type === "required" && (
+              <p className="text-red-600 text-xs">Menu is required</p>
+            )}
           </label>
 
-            {/* Your Name */}
+          {/* Your Name */}
           <div className="md:flex gap-6">
             <label className="form-control w-full">
               <div className="label">
@@ -111,10 +122,18 @@ const AddReview = () => {
               </span>
             </div>
             <textarea
-              {...register("review")}
+              {...register("review", { required: true, minLength: 60 })}
               className="textarea textarea-bordered"
               placeholder="Review in details..."
             ></textarea>
+            {errors.review?.type === "required" && (
+              <p className="text-red-600 text-xs">Review is required</p>
+            )}
+            {errors.review?.type === "minLength" && (
+              <p className="text-red-600 text-xs">
+                Review must be atleast 60 characters long.
+              </p>
+            )}
           </label>
 
           <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white">

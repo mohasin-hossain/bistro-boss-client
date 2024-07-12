@@ -20,7 +20,12 @@ const Reservation = () => {
     },
   });
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     const booking = {
       menu: data.menuName,
@@ -55,27 +60,39 @@ const Reservation = () => {
         subHeading="Book a Table"
       ></SectionTitle>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="font-inter font-normal">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="font-inter font-normal"
+      >
         {/* Menu Name */}
         <div className="">
           <label className="form-control w-full">
             <div className="label">
               <span className="label-text">
-                Which Menu Item you would like to book?
+                Which Menu Item would you like to book?
               </span>
             </div>
             <select
-              defaultValue="default"
-              {...register("menuName")}
+              defaultValue=""
+              {...register("menuName", {
+                required: "Menu is required",
+                validate: (value) =>
+                  value !== "" || "Please select a menu item",
+              })}
               className="select select-bordered w-full"
             >
-              <option disabled value="default">
+              <option disabled value="">
                 Select One
               </option>
               {menuNames.map((menuName, idx) => (
-                <option key={idx}>{menuName.name}</option>
+                <option key={idx} value={menuName.name}>
+                  {menuName.name}
+                </option>
               ))}
             </select>
+            {errors.menuName && (
+              <p className="text-red-600 text-xs">{errors.menuName.message}</p>
+            )}
           </label>
         </div>
 
@@ -85,10 +102,13 @@ const Reservation = () => {
               <span className="label-text">Date*</span>
             </div>
             <input
-              {...register("date")}
+              {...register("date", { required: true })}
               type="date"
               className="input input-bordered w-full md:max-w-sm"
             />
+            {errors.date?.type === "required" && (
+              <p className="text-red-600 text-xs">Date is required</p>
+            )}
           </label>
 
           <label className="form-control w-full md:max-w-sm">
@@ -96,10 +116,13 @@ const Reservation = () => {
               <span className="label-text">Time*</span>
             </div>
             <input
-              {...register("time")}
+              {...register("time", { required: true })}
               type="time"
               className="input input-bordered w-full md:max-w-sm"
             />
+            {errors.time?.type === "required" && (
+              <p className="text-red-600 text-xs">Time is required</p>
+            )}
           </label>
 
           <label className="form-control w-full md:max-w-sm">
@@ -107,7 +130,7 @@ const Reservation = () => {
               <span className="label-text">Guest*</span>
             </div>
             <select
-              {...register("guest")}
+              {...register("guest", { required: true })}
               className="select select-bordered w-full md:max-w-sm"
               defaultValue="1 Person"
             >
@@ -116,6 +139,9 @@ const Reservation = () => {
               <option>3 Person</option>
               <option>4 Person</option>
             </select>
+            {errors.guest?.type === "required" && (
+              <p className="text-red-600 text-xs">Guest is required</p>
+            )}
           </label>
         </div>
 
@@ -125,12 +151,15 @@ const Reservation = () => {
               <span className="label-text">Name*</span>
             </div>
             <input
-              {...register("reserverName")}
+              {...register("reserverName", { required: true })}
               defaultValue={user?.displayName}
               type="text"
               placeholder="Your Name"
               className="input input-bordered w-full md:max-w-sm"
             />
+            {errors.reserverName?.type === "required" && (
+              <p className="text-red-600 text-xs">Name is required</p>
+            )}
           </label>
 
           <label className="form-control w-full md:max-w-sm">
@@ -138,12 +167,15 @@ const Reservation = () => {
               <span className="label-text">Email*</span>
             </div>
             <input
-              {...register("reserverEmail")}
+              {...register("reserverEmail", { required: true })}
               defaultValue={user?.email}
               type="email"
               placeholder="Your Email"
               className="input input-bordered w-full md:max-w-sm"
             />
+            {errors.email?.type === "required" && (
+              <p className="text-red-600 text-xs">Email is required</p>
+            )}
           </label>
 
           <label className="form-control w-full md:max-w-sm">
@@ -151,11 +183,14 @@ const Reservation = () => {
               <span className="label-text">Phone*</span>
             </div>
             <input
-              {...register("reserverPhone")}
+              {...register("reserverPhone", { required: true })}
               type="text"
               placeholder="Phone Number"
               className="input input-bordered w-full md:max-w-sm"
             />
+            {errors.reserverPhone?.type === "required" && (
+              <p className="text-red-600 text-xs">Phone is required</p>
+            )}
           </label>
         </div>
 
