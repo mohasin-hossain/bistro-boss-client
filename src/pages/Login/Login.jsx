@@ -3,13 +3,16 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import loginPageImg from "../../assets/others/authentication1.png";
+import loginPageImg from "../../assets/home/banner.jpg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { IoLogInOutline } from "react-icons/io5";
+import { HiArrowUturnLeft } from "react-icons/hi2";
+import Logo from '../../assets/logo.png';
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -54,69 +57,91 @@ const Login = () => {
       <Helmet>
         <title>Bistro Boss | Login</title>
       </Helmet>
-      <div className="bg-form-image">
-        <div className="max-w-7xl mx-auto px-10 flex items-center justify-center min-h-screen">
-          <div className="md:flex items-center justify-center p-8 border-2 shadow-md bg-form-image">
-            <div className="md:w-1/2">
-              <img src={loginPageImg} alt="" />
-            </div>
-            <div className="md:w-1/2">
-              <form onSubmit={handleLogin} className="card-body">
-                <h1 className="text-3xl font-bold text-center">Login</h1>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Type here"
-                    name="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    name="password"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <LoadCanvasTemplate />
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Type the text above"
-                    name="captcha"
-                    className="input input-bordered"
-                    ref={captchaRef}
-                    onBlur={handleCaptchaValidation}
-                    required
-                  />
-                </div>
-                <div className="form-control mt-6">
-                  <input
-                    className="btn btn-primary"
-                    type="submit"
-                    value="Login"
-                    disabled={disabled}
-                  />
-                </div>
-              </form>
-              <p className="text-orange-500 text-center">
-                New here?{" "}
-                <Link className="font-bold" to="/register">
-                  Create an Account
+      <div className="bg-[#B58130] flex items-center min-h-screen">
+        <div className="flex items-center justify-center md:h-[600px] max-w-6xl mx-auto shadow-lg drop-shadow-lg">
+          <div className="md:flex items-center justify-center md:h-[600px]">
+            <div className="md:w-1/2 h-full relative">
+              <img
+                src={loginPageImg}
+                className="object-cover w-full h-full"
+                alt=""
+              />
+              <div className="absolute left-4 top-4">
+                <Link to="/">
+                  <button className="btn-sm btn btn-outline rounded-none shadow-md text-[#B58130] flex justify-center items-center gap-3 font-bold">
+                    Go Back <HiArrowUturnLeft />
+                  </button>
                 </Link>
-              </p>
-              <SocialLogin title="Sign In With"></SocialLogin>
+              </div>
+              <div className="absolute inset-0 m-auto w-80 lg:w-1/2 h-1/2 bg-black bg-opacity-30 flex flex-col justify-center items-center">
+                <h2 className="text-6xl font-cinzel text-white font-semibold">
+                  Login
+                </h2>
+              </div>
+            </div>
+            <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center">
+              <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
+                <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
+                <form onSubmit={handleLogin} className="card-body">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-bold font-inter">
+                        Email
+                      </span>
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="Type here"
+                      name="email"
+                      className="input rounded-none"
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-bold font-inter">
+                        Password
+                      </span>
+                    </label>
+                    <input
+                      type="password"
+                      placeholder="Enter your password"
+                      name="password"
+                      className="input rounded-none"
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label ">
+                      <LoadCanvasTemplate />
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Type the text above"
+                      name="captcha"
+                      className="input rounded-none"
+                      ref={captchaRef}
+                      onBlur={handleCaptchaValidation}
+                      required
+                    />
+                  </div>
+                  <div className="form-control mt-4">
+                    <button
+                      className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl"
+                      disabled={disabled}
+                    >
+                      Login <IoLogInOutline className="text-2xl" />
+                    </button>
+                  </div>
+                </form>
+                <p className="text-orange-500 text-center font-cinzel">
+                  New here?{" "}
+                  <Link className="font-bold" to="/register">
+                    Create an Account
+                  </Link>
+                </p>
+                <SocialLogin title="Sign In With"></SocialLogin>
+              </div>
             </div>
           </div>
         </div>

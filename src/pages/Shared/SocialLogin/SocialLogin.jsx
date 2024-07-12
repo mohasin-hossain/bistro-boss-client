@@ -28,7 +28,7 @@ const SocialLogin = ({ title }) => {
 
   return (
     <div className="text-center">
-      <div className="divider uppercase">{title}</div>
+      <div className="divider uppercase font-cinzel font-semibold text-xs">{title}</div>
       <button
         onClick={handleGoogleSignIn}
         className="btn btn-ghost rounded-full outline"
