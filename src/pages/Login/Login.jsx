@@ -4,7 +4,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import loginPageImg from "../../assets/home/banner.jpg";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -12,14 +12,20 @@ import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { IoLogInOutline } from "react-icons/io5";
 import { HiArrowUturnLeft } from "react-icons/hi2";
-import Logo from '../../assets/logo.png';
+import Logo from "../../assets/logo.png";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const captchaRef = useRef(null);
-  const [disabled, setDisabled] = useState(true);
+  const [error, setError] = useState("");
   const { signInUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -27,28 +33,19 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    signInUser(email, password).then((result) => {
-      console.log(result.user);
-      Swal.fire({
-        title: "Login Successful!",
-        icon: "success",
+  const onSubmit = (data) => {
+    setError("");
+    if (validateCaptcha(data.captcha) == true) {
+      signInUser(data.email, data.password).then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Login Successful!",
+          icon: "success",
+        });
+        navigate(from, { replace: true });
       });
-      navigate(from, { replace: true });
-    });
-  };
-
-  const handleCaptchaValidation = () => {
-    const user_captcha_value = captchaRef.current.value;
-    if (validateCaptcha(user_captcha_value) == true) {
-      setDisabled(false);
     } else {
-      setDisabled(true);
+      setError("Invalid Captcha!");
     }
   };
 
@@ -82,7 +79,7 @@ const Login = () => {
             <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
-                <form onSubmit={handleLogin} className="card-body">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text font-bold font-inter">
@@ -94,8 +91,11 @@ const Login = () => {
                       placeholder="Type here"
                       name="email"
                       className="input rounded-none"
-                      required
+                      {...register("email", { required: true })}
                     />
+                    {errors.email?.type === "required" && (
+                      <p className="text-red-600 text-xs">Email is required</p>
+                    )}
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -108,8 +108,13 @@ const Login = () => {
                       placeholder="Enter your password"
                       name="password"
                       className="input rounded-none"
-                      required
+                      {...register("password", { required: true })}
                     />
+                    {errors.password?.type === "required" && (
+                      <p className="text-red-600 text-xs">
+                        Password is required
+                      </p>
+                    )}
                   </div>
                   <div className="form-control">
                     <label className="label ">
@@ -120,16 +125,15 @@ const Login = () => {
                       placeholder="Type the text above"
                       name="captcha"
                       className="input rounded-none"
-                      ref={captchaRef}
-                      onBlur={handleCaptchaValidation}
-                      required
+                      {...register("captcha", { required: true })}
                     />
+                    {errors.captcha?.type === "required" && (
+                      <p className="text-red-600 text-xs">Captcha is Required</p>
+                    )}
+                    <span className="text-red-600 text-xs">{error}</span>
                   </div>
                   <div className="form-control mt-4">
-                    <button
-                      className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl"
-                      disabled={disabled}
-                    >
+                    <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
                       Login <IoLogInOutline className="text-2xl" />
                     </button>
                   </div>
