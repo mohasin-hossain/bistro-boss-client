@@ -5,6 +5,7 @@ import { GiWallet } from "react-icons/gi";
 import { BsMinecart } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import ProfileImg from "../../../assets/others/profile.png";
 
 const UserHome = () => {
   const { user } = useAuth();
@@ -33,7 +34,7 @@ const UserHome = () => {
           <div>
             <img
               className="w-48 rounded-full border-4 border-[#D1A054]"
-              src={user.photoURL}
+              src={user.photoURL ? user.photoURL : ProfileImg}
               alt=""
             />
             <h3 className="text-3xl text-center mt-4">{user?.displayName}</h3>

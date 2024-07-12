@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import ProfileImg from "../../../assets/others/profile.png";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { FaUsers, FaUtensils } from "react-icons/fa";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -103,7 +104,7 @@ const AdminHome = () => {
         <div className="stat block md:hidden lg:block">
           <img
             className="w-20 h-20 rounded-full border-4 border-[#D1A054] mx-auto"
-            src={user.photoURL}
+            src={user.photoURL ? user.photoURL : ProfileImg}
             alt=""
           />
         </div>

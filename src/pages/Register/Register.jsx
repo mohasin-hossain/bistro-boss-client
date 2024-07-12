@@ -79,10 +79,10 @@ const Register = () => {
             <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
-                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body -mt-12">
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-bold">Name</span>
+                      <span className="label-text font-bold">Name*</span>
                     </label>
                     <input
                       type="text"
@@ -95,15 +95,15 @@ const Register = () => {
                       className="input rounded-none"
                     />
                     {errors.name?.type === "required" && (
-                      <p className="text-red-600">Name is required</p>
+                      <p className="text-red-600 text-xs">Name is required</p>
                     )}
                     {errors.name?.type === "minLength" && (
-                      <p className="text-red-600">
+                      <p className="text-red-600 text-xs">
                         Name must be atleast 6 characters long
                       </p>
                     )}
                     {errors.name?.type === "maxLength" && (
-                      <p className="text-red-600">
+                      <p className="text-red-600 text-xs">
                         Name must be within 6 to 10 characters
                       </p>
                     )}
@@ -114,19 +114,14 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
-                      {...register("photo", {
-                        required: true,
-                      })}
+                      {...register("photo")}
                       placeholder="Paste photo URL"
                       className="input rounded-none"
                     />
-                    {errors.name?.type === "required" && (
-                      <p className="text-red-600">Photo URL is required</p>
-                    )}
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-bold">Email</span>
+                      <span className="label-text font-bold">Email*</span>
                     </label>
                     <input
                       type="email"
@@ -135,12 +130,12 @@ const Register = () => {
                       className="input rounded-none"
                     />
                     {errors.email?.type === "required" && (
-                      <p className="text-red-600">Email is required</p>
+                      <p className="text-red-600 text-xs">Email is required</p>
                     )}
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-bold">Password</span>
+                      <span className="label-text font-bold">Password*</span>
                     </label>
                     <input
                       type="password"
@@ -154,15 +149,15 @@ const Register = () => {
                       className="input rounded-none"
                     />
                     {errors.password?.type === "required" && (
-                      <p className="text-red-600">Password is required</p>
+                      <p className="text-red-600 text-xs">Password is required</p>
                     )}
                     {errors.password?.type === "minLength" && (
-                      <p className="text-red-600">
+                      <p className="text-red-600 text-xs">
                         Password Must be atleast 6 characters long
                       </p>
                     )}
                     {errors.password?.type === "pattern" && (
-                      <p className="text-red-600">
+                      <p className="text-red-600 text-xs">
                         Password must include 1 uppercase, 1 lowercase, 1
                         special character
                       </p>
@@ -176,7 +171,7 @@ const Register = () => {
                     />
                   </div>
                 </form>
-                <p className="text-orange-500 text-center -mt-4 font-cinzel">
+                <p className="text-orange-500 text-center text-base -mt-4 font-cinzel">
                   Already Registered?{" "}
                   <Link className="font-bold" to="/login">
                     Please Log In
