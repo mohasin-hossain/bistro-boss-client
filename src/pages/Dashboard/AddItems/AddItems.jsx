@@ -4,11 +4,14 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
+  const [imagePreview, setImagePreview] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -46,7 +49,19 @@ const AddItems = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setImagePreview(null);
       }
+    }
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -140,18 +155,31 @@ const AddItems = () => {
           </label>
 
           {/* Image */}
-          <div>
-            <div className="label">
-              <span className="label-text">Add Recipe Image*</span>
-            </div>
-            <input
-              {...register("image", { required: true })}
-              type="file"
-              className="file-input w-full max-w-md"
-            />
-            {errors.image?.type === "required" && (
-              <p className="text-red-600 text-xs">Image is required</p>
+          <div className="flex gap-3 md:gap-8 items-center">
+            {imagePreview && (
+              <div>
+                <div className="label">
+                  <span className="label-text font-semibold">
+                    Image Preview
+                  </span>
+                </div>
+                <img src={imagePreview} className="w-48 rounded-md" alt="" />
+              </div>
             )}
+            <div>
+              <div className="label">
+                <span className="label-text">Add Recipe Image*</span>
+              </div>
+              <input
+                {...register("image", { required: true })}
+                type="file"
+                className="file-input w-full max-w-md"
+                onChange={handleImageChange}
+              />
+              {errors.image?.type === "required" && (
+                <p className="text-red-600 text-xs">Image is required</p>
+              )}
+            </div>
           </div>
 
           <div className="flex justify-center">
