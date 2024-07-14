@@ -9,7 +9,12 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
@@ -60,11 +65,14 @@ const AddItems = () => {
               <span className="label-text">Recipe Name*</span>
             </div>
             <input
-              {...register("name")}
+              {...register("name", { required: true })}
               type="text"
               placeholder="Recipe Name"
               className="input input-bordered w-full"
             />
+            {errors.name?.type === "required" && (
+              <p className="text-red-600 text-xs">Name is required</p>
+            )}
           </label>
 
           <div className="md:flex gap-6">
@@ -74,11 +82,11 @@ const AddItems = () => {
                 <span className="label-text">Category*</span>
               </div>
               <select
-                {...register("category")}
+                {...register("category", { required: true })}
                 className="select select-bordered w-full"
-                defaultValue="default"
+                defaultValue=""
               >
-                <option disabled value="default">
+                <option disabled value="">
                   Select a category
                 </option>
                 <option value="offered">Offer</option>
@@ -89,6 +97,9 @@ const AddItems = () => {
                 <option value="dessert">Dessert</option>
                 <option value="drinks">Drinks</option>
               </select>
+              {errors.category?.type === "required" && (
+                <p className="text-red-600 text-xs">Please select a category</p>
+              )}
             </label>
 
             {/* Price */}
@@ -97,11 +108,14 @@ const AddItems = () => {
                 <span className="label-text">Price*</span>
               </div>
               <input
-                {...register("price")}
+                {...register("price", { required: true })}
                 type="text"
                 placeholder="Recipe Name"
                 className="input input-bordered w-full"
               />
+              {errors.price?.type === "required" && (
+                <p className="text-red-600 text-xs">Price is required</p>
+              )}
             </label>
           </div>
 
@@ -111,10 +125,18 @@ const AddItems = () => {
               <span className="label-text">Recipe Details*</span>
             </div>
             <textarea
-              {...register("recipeDetails")}
+              {...register("recipeDetails", { required: true, minLength: 70 })}
               className="textarea textarea-bordered"
               placeholder="Recipe Details"
             ></textarea>
+            {errors.recipeDetails?.type === "required" && (
+              <p className="text-red-600 text-xs">Recipe Detail is required</p>
+            )}
+            {errors.recipeDetails?.type === "minLength" && (
+              <p className="text-red-600 text-xs">
+                Details must be atleast 70 characters!
+              </p>
+            )}
           </label>
 
           {/* Image */}
@@ -123,10 +145,13 @@ const AddItems = () => {
               <span className="label-text">Add Recipe Image*</span>
             </div>
             <input
-              {...register("image")}
+              {...register("image", { required: true })}
               type="file"
               className="file-input w-full max-w-md"
             />
+            {errors.image?.type === "required" && (
+              <p className="text-red-600 text-xs">Image is required</p>
+            )}
           </div>
 
           <div className="flex justify-center">

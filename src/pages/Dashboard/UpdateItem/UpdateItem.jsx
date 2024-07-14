@@ -5,59 +5,81 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaUtensils } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-  const { name, recipe, price, category, _id } = useLoaderData();
+  const { name, recipe, price, category, _id, image } = useLoaderData();
+  const [imagePreview, setImagePreview] = useState(image);
 
   const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
-    // Upload image to imgbb and get an url
-    const imgFile = { image: data.image[0] };
-    const res = await axiosPublic.post(image_hosting_api, imgFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    let imageUrl = image;
 
-    if (res.data.success) {
-      // Now send the menu item data to the server with the image url
-      const menuItem = {
-        name: data.name,
-        category: data.category,
-        price: parseFloat(data.price),
-        recipe: data.recipeDetails,
-        image: res.data.data.display_url,
-      };
-      const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-      if (menuRes.data.modifiedCount > 0) {
-        // Show Success Popup
-        // reset();
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: `${data.name} updated to the Menu!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+    if (data.image && data.image.length > 0) {
+      // Upload image to imgbb and get an url
+      const imgFile = { image: data.image[0] };
+      const res = await axiosPublic.post(image_hosting_api, imgFile, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+
+      if (res.data.success) {
+        imageUrl = res.data.data.display_url;
       }
+    }
+    
+    // Now send the menu item data to the server with the image url
+    const menuItem = {
+      name: data.name,
+      category: data.category,
+      price: parseFloat(data.price),
+      recipe: data.recipeDetails,
+      image: imageUrl,
+    };
+    const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
+    if (menuRes.data.modifiedCount > 0) {
+      // Show Success Popup
+      // reset();
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: `${data.name} updated to the Menu!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <SectionTitle
         heading="Update an Item"
         subHeading="Update Now"
       ></SectionTitle>
 
       <div className="px-12">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 font-inter font-normal">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-2 font-inter font-normal"
+        >
           {/* Recipe Name */}
           <label className="form-control w-full">
             <div className="label">
@@ -125,21 +147,30 @@ const UpdateItem = () => {
           </label>
 
           {/* Image */}
-          <div>
-          <div className="label">
-              <span className="label-text">Add Recipe Image*</span>
+          <div className="flex gap-3 md:gap-8 items-center">
+            <div>
+              <div className="label">
+                <span className="label-text font-semibold">Image Preview</span>
+              </div>
+              <img src={imagePreview} className="w-48 rounded-md" alt="" />
             </div>
-            <input
-              {...register("image")}
-              type="file"
-              className="file-input w-full max-w-xs"
-            />
+            <div>
+              <div className="label">
+                <span className="label-text">Update Recipe Image*</span>
+              </div>
+              <input
+                {...register("image")}
+                type="file"
+                className="file-input w-full max-w-xs"
+                onChange={handleImageChange}
+              />
+            </div>
           </div>
 
           <div className="flex justify-center">
-            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel">
-            Update Item
-            <FaUtensils></FaUtensils>
+            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel mt-8">
+              Update Item
+              <FaUtensils></FaUtensils>
             </button>
           </div>
         </form>
