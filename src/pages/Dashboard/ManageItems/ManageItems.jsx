@@ -38,7 +38,7 @@ const ManageItems = () => {
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <SectionTitle
         heading="Manage All Items"
         subHeading="Hurry Up"

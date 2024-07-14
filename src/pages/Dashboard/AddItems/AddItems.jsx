@@ -11,6 +11,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const AddItems = () => {
   const [imagePreview, setImagePreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -22,6 +23,7 @@ const AddItems = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
+    setLoading(true);
     // Upload image to imgbb and get an url
     const imgFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imgFile, {
@@ -50,6 +52,7 @@ const AddItems = () => {
           timer: 1500,
         });
         setImagePreview(null);
+        setLoading(false);
       }
     }
   };
@@ -66,7 +69,7 @@ const AddItems = () => {
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <SectionTitle
         heading="Add an Item"
         subHeading="What's New"
@@ -183,9 +186,14 @@ const AddItems = () => {
           </div>
 
           <div className="flex justify-center">
-            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel">
+            <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel flex">
               Add Item
               <FaUtensils></FaUtensils>
+              {loading ? (
+                <span className="loading loading-spinner text-white justify-end"></span>
+              ) : (
+                ""
+              )}
             </button>
           </div>
         </form>

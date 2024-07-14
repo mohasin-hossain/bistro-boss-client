@@ -6,8 +6,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const Reservation = () => {
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ const Reservation = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
+    setLoading(true);
     const booking = {
       menu: data.menuName,
       name: data.reserverName,
@@ -41,6 +44,7 @@ const Reservation = () => {
     axiosSecure.post("/bookings", booking).then((res) => {
       if (res.data.insertedId) {
         reset();
+        setLoading(false);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -194,9 +198,10 @@ const Reservation = () => {
           </label>
         </div>
 
-        <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white flex mx-auto mt-4 font-cinzel">
+        <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white flex mx-auto mt-4 font-cinzel w-60">
           Book a Table
-          <SlCalender className="text-xl" />
+          {!loading && <SlCalender className="text-xl" />}
+          {loading ? <SlCalender className="text-xl animate-pulse" /> : ""}
         </button>
       </form>
     </div>

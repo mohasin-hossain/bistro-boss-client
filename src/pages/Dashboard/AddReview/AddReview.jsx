@@ -11,6 +11,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
 
 const AddReview = () => {
+  const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [error, setError] = useState("");
   const axiosSecure = useAxiosSecure();
@@ -39,6 +40,7 @@ const AddReview = () => {
       setError("Please select the number of stars you would give out of 5.");
       return;
     } else if (rating > 0) {
+      setLoading(true);
       const review = {
         name: data.name,
         menuName: data.menuName,
@@ -51,6 +53,7 @@ const AddReview = () => {
         if (res.data.insertedId) {
           reset();
           setRating(0);
+          setLoading(false);
           Swal.fire({
             position: "center",
             icon: "success",
@@ -145,9 +148,10 @@ const AddReview = () => {
             )}
           </label>
 
-          <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white">
+          <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60">
             Send Review
-            <IoRocket className="text-xl" />
+            {!loading && <IoRocket className="text-xl" />}
+            {loading ? <IoRocket className="text-xl animate-pulse" /> : ""}
           </button>
         </form>
       </div>
