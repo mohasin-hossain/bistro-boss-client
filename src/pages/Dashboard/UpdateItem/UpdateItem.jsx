@@ -171,8 +171,12 @@ const UpdateItem = () => {
 
           <div className="flex justify-center">
             <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel mt-8">
-              Update Item
-              <FaUtensils></FaUtensils>
+              {!loading && (
+                <>
+                  Update Item
+                  <FaUtensils></FaUtensils>
+                </>
+              )}
               {loading ? (
                 <span className="loading loading-spinner text-white justify-end"></span>
               ) : (

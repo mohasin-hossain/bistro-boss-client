@@ -137,7 +137,7 @@ const Login = () => {
                   </div>
                   <div className="form-control mt-4">
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
-                      Login <IoLogInOutline className="text-2xl" />
+                     {!loading && <>Login <IoLogInOutline className="text-2xl" /></>}
                       {loading ? (
                         <span className="loading loading-spinner text-white justify-end"></span>
                       ) : (

@@ -187,8 +187,12 @@ const AddItems = () => {
 
           <div className="flex justify-center">
             <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel flex">
-              Add Item
-              <FaUtensils></FaUtensils>
+              {!loading && (
+                <>
+                  Add Item
+                  <FaUtensils></FaUtensils>
+                </>
+              )}
               {loading ? (
                 <span className="loading loading-spinner text-white justify-end"></span>
               ) : (
