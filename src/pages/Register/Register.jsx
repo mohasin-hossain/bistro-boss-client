@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -10,7 +10,12 @@ import RegisterPageImg from "../../assets/home/banner.jpg";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import Logo from "../../assets/logo.png";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Register = () => {
+  const [loading, setLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -22,31 +27,56 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    createUser(data.email, data.password).then(() => {
-      updateUserProfile(data.name, data.photo)
-        .then(() => {
-          // Send user to the database
-          const newUser = {
-            name: data.name,
-            email: data.email,
-          };
-
-          axiosPublic.post("/users", newUser).then((res) => {
-            if (res.data.insertedId) {
-              reset(); // Reset the form
-              Swal.fire({
-                title: "User Created Successfully",
-                icon: "success",
-              });
-              navigate("/");
-            }
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const imgFile = { image: data.photo[0] };
+    const res = await axiosPublic.post(image_hosting_api, imgFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     });
+
+    if (res.data.success) {
+      const photo = res.data.data.display_url;
+      setImagePreview(photo);
+
+      createUser(data.email, data.password).then(() => {
+        updateUserProfile(data.name, photo)
+          .then(() => {
+            // Send user to the database
+            const newUser = {
+              name: data.name,
+              email: data.email,
+            };
+
+            axiosPublic.post("/users", newUser).then((res) => {
+              if (res.data.insertedId) {
+                setLoading(false);
+                reset(); // Reset the form
+                Swal.fire({
+                  title: "User Created Successfully",
+                  icon: "success",
+                });
+                navigate("/");
+              }
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    }
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -79,7 +109,10 @@ const Register = () => {
             <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
-                <form onSubmit={handleSubmit(onSubmit)} className="card-body -mt-12">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="card-body -mt-12"
+                >
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text font-bold">Name*</span>
@@ -107,17 +140,6 @@ const Register = () => {
                         Name must be within 6 to 10 characters
                       </p>
                     )}
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text font-bold">Photo URL</span>
-                    </label>
-                    <input
-                      type="text"
-                      {...register("photo")}
-                      placeholder="Paste photo URL"
-                      className="input rounded-none"
-                    />
                   </div>
                   <div className="form-control">
                     <label className="label">
@@ -149,7 +171,9 @@ const Register = () => {
                       className="input rounded-none"
                     />
                     {errors.password?.type === "required" && (
-                      <p className="text-red-600 text-xs">Password is required</p>
+                      <p className="text-red-600 text-xs">
+                        Password is required
+                      </p>
                     )}
                     {errors.password?.type === "minLength" && (
                       <p className="text-red-600 text-xs">
@@ -163,12 +187,41 @@ const Register = () => {
                       </p>
                     )}
                   </div>
+                  <div className="form-control">
+                    <div className={imagePreview ? "flex items-center" : ""}>
+                      <div>
+                        <label className="label">
+                          <span className="label-text font-bold">Photo</span>
+                        </label>
+                        <input
+                          {...register("photo")}
+                          type="file"
+                          className={`file-input rounded-none ${
+                            imagePreview ? "max-w-sm" : "w-full"
+                          }`}
+                          onChange={handleImageChange}
+                        />
+                      </div>
+                      {imagePreview && (
+                        <div className="pt-8 pl-3">
+                          <img
+                            src={imagePreview}
+                            className="w-16 h-16 object-cover rounded-none"
+                            alt=""
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div className="form-control mt-2">
-                    <input
-                      className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl"
-                      type="submit"
-                      value="Register"
-                    />
+                    <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
+                      Register
+                      {loading ? (
+                        <span className="loading loading-spinner text-white justify-end"></span>
+                      ) : (
+                        ""
+                      )}
+                    </button>
                   </div>
                 </form>
                 <p className="text-orange-500 text-center text-base -mt-4 font-cinzel">

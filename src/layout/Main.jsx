@@ -21,8 +21,6 @@ const Main = () => {
     };
   }, []);
 
-  // const location = useLocation();
-
   // sliding to top on page change
   useLayoutEffect(() => {
     window.scrollTo(0, 0);

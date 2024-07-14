@@ -16,6 +16,7 @@ import Logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { signInUser } = useContext(AuthContext);
   const location = useLocation();
@@ -36,8 +37,10 @@ const Login = () => {
   const onSubmit = (data) => {
     setError("");
     if (validateCaptcha(data.captcha) == true) {
+      setLoading(true);
       signInUser(data.email, data.password).then((result) => {
         console.log(result.user);
+        setLoading(false);
         Swal.fire({
           title: "Login Successful!",
           icon: "success",
@@ -105,7 +108,7 @@ const Login = () => {
                     </label>
                     <input
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder="Type here"
                       name="password"
                       className="input rounded-none"
                       {...register("password", { required: true })}
@@ -122,7 +125,7 @@ const Login = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Type the text above"
+                      placeholder="Enter captcha"
                       name="captcha"
                       className="input rounded-none"
                       {...register("captcha", { required: true })}
@@ -135,6 +138,11 @@ const Login = () => {
                   <div className="form-control mt-4">
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
                       Login <IoLogInOutline className="text-2xl" />
+                      {loading ? (
+                        <span className="loading loading-spinner text-white justify-end"></span>
+                      ) : (
+                        ""
+                      )}
                     </button>
                   </div>
                 </form>
