@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
+  const [error, setError] = useState("");
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const location = useLocation();
@@ -31,28 +32,35 @@ const AddReview = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    const review = {
-      name: data.name,
-      menuName: data.menuName,
-      review: data.review,
-      rating: rating,
-      user: user.email,
-    };
 
-    axiosSecure.post("/reviews", review).then((res) => {
-      if (res.data.insertedId) {
-        reset();
-        setRating(0);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Thanks for the feedback!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+  const onSubmit = (data) => {
+    setError("");
+    if (rating === 0) {
+      setError("Please select the number of stars you would give out of 5.");
+      return;
+    } else if (rating > 0) {
+      const review = {
+        name: data.name,
+        menuName: data.menuName,
+        review: data.review,
+        rating: rating,
+        user: user.email,
+      };
+
+      axiosSecure.post("/reviews", review).then((res) => {
+        if (res.data.insertedId) {
+          reset();
+          setRating(0);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Thanks for the feedback!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    }
   };
 
   return (
@@ -74,6 +82,7 @@ const AddReview = () => {
               value={rating}
               onChange={setRating}
             />
+            <span className="text-red-500 text-xs">{error}</span>
           </div>
 
           {/* Menu Name */}
