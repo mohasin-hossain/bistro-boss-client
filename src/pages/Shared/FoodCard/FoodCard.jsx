@@ -9,6 +9,7 @@ import { FaCartPlus } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import { MdReviews } from "react-icons/md";
 import useAdmin from "../../../hooks/useAdmin";
+import PropTypes from "prop-types";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
@@ -31,7 +32,6 @@ const FoodCard = ({ item }) => {
   // Reviews Modal
 
   const handleAddToCart = () => {
-
     if (isAdmin) {
       Swal.fire("Admin Can't purchase! Please Login as a Customer.");
       return;
@@ -167,3 +167,7 @@ const FoodCard = ({ item }) => {
 };
 
 export default FoodCard;
+
+FoodCard.propTypes = {
+  item: PropTypes.object.isRequired,
+};

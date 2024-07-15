@@ -2,6 +2,7 @@ import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SocialLogin = ({ title }) => {
   const { googleSignIn } = useAuth();
@@ -11,7 +12,6 @@ const SocialLogin = ({ title }) => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        // console.log(result);
         const newUser = {
           email: result.user?.email,
           name: result.user?.displayName,
@@ -28,7 +28,9 @@ const SocialLogin = ({ title }) => {
 
   return (
     <div className="text-center">
-      <div className="divider uppercase font-cinzel font-semibold text-xs">{title}</div>
+      <div className="divider uppercase font-cinzel font-semibold text-xs">
+        {title}
+      </div>
       <button
         onClick={handleGoogleSignIn}
         className="btn btn-ghost rounded-full outline -mt-2"
@@ -40,3 +42,7 @@ const SocialLogin = ({ title }) => {
 };
 
 export default SocialLogin;
+
+SocialLogin.propTypes = {
+  title: PropTypes.string.isRequired,
+};

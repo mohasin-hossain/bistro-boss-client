@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Cover from "../../Shared/Cover/Cover";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
+import PropTypes from "prop-types";
 
 const MenuCategory = ({ title, subTitle, img, items }) => {
   return (
@@ -23,3 +24,10 @@ const MenuCategory = ({ title, subTitle, img, items }) => {
 };
 
 export default MenuCategory;
+
+MenuCategory.propTypes = {
+  title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+};

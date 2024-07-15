@@ -18,6 +18,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Helmet } from "react-helmet-async";
+import PropTypes from "prop-types";
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -201,3 +202,11 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
+AdminHome.propTypes = {
+  fill: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};

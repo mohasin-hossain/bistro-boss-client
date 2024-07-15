@@ -73,7 +73,7 @@ const MyBooking = () => {
         {!bookings.length && (
           <div className="text-2xl font-thin mt-20 w-1/2 flex justify-center items-center p-4 bg-[#D1A054] text-white mx-auto">
             <PiSmileySadLight className="text-3xl mr-2" />
-            Don't wait—book your item today!
+            Do not wait — book your item today!
           </div>
         )}
       </div>
