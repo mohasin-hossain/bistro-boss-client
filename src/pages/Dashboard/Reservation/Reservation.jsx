@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Reservation = () => {
   const [loading, setLoading] = useState(false);
@@ -59,6 +60,9 @@ const Reservation = () => {
 
   return (
     <div className="px-12">
+      <Helmet>
+        <title>Bistro Boss | Reservation</title>
+      </Helmet>
       <SectionTitle
         heading="Reservation"
         subHeading="Book a Table"

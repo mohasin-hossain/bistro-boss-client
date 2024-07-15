@@ -4,6 +4,7 @@ import { PiSmileySadLight } from "react-icons/pi";
 import SectionTitle from "../../../components/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 moment().format();
 
 const MyOrders = () => {
@@ -20,6 +21,9 @@ const MyOrders = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | My Orders</title>
+      </Helmet>
       <SectionTitle
         heading={`My Orders: ${payments.length}`}
         subHeading="At a Glance"
@@ -51,7 +55,9 @@ const MyOrders = () => {
               >
                 <th>{idx + 1}</th>
                 <td className="hidden lg:table-cell">{payment.email}</td>
-                <td className="hidden lg:table-cell">{payment.transactionId}</td>
+                <td className="hidden lg:table-cell">
+                  {payment.transactionId}
+                </td>
                 <td>
                   {/* User Order List Modal */}
                   <button
@@ -84,7 +90,9 @@ const MyOrders = () => {
                   </dialog>
                 </td>
                 <td>${payment.price}</td>
-                <td className="hidden lg:table-cell">{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
+                <td className="hidden lg:table-cell">
+                  {moment(payment.date).format("MMMM Do YYYY, h:mm a")}
+                </td>
                 <td
                   className={
                     payment.status === "pending" || payment.status === "failed"

@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { FaUtensils } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -72,6 +73,9 @@ const UpdateItem = () => {
 
   return (
     <div className="mb-10">
+      <Helmet>
+        <title>Bistro Boss | Update Item</title>
+      </Helmet>
       <SectionTitle
         heading="Update an Item"
         subHeading="Update Now"

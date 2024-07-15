@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -70,6 +71,9 @@ const AddItems = () => {
 
   return (
     <div className="mb-10">
+      <Helmet>
+        <title>Bistro Boss | Add Items</title>
+      </Helmet>
       <SectionTitle
         heading="Add an Item"
         subHeading="What's New"

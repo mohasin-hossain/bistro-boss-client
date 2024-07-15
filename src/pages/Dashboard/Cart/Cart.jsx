@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
 import { IoRocket } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -38,8 +39,13 @@ const Cart = () => {
 
   return (
     <div className="py-12 md:px-12 px-2">
+      <Helmet>
+        <title>Bistro Boss | Cart</title>
+      </Helmet>
       <div className="flex md:flex-row flex-col items-end justify-between">
-        <h3 className="text-base md:text-3xl font-semibold">Items: {cart.length}</h3>
+        <h3 className="text-base md:text-3xl font-semibold">
+          Items: {cart.length}
+        </h3>
         <h3 className="text-base md:text-3xl font-semibold">
           Total Price: ${totalPrice.toFixed(2)}
         </h3>
@@ -73,12 +79,16 @@ const Cart = () => {
           </thead>
           <tbody>
             {cart.map((item, idx) => (
-              <tr key={item._id} >
+              <tr key={item._id}>
                 <th>{idx + 1}</th>
                 <td className="hidden md:table-cell">
                   <div className="flex items-center gap-3">
                     <div>
-                      <img className="w-12 h-12 rounded-md" src={item.image} alt="Item image" />
+                      <img
+                        className="w-12 h-12 rounded-md"
+                        src={item.image}
+                        alt="Item image"
+                      />
                     </div>
                   </div>
                 </td>

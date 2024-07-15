@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 moment().format();
 
 const ManageOrders = () => {
@@ -17,7 +18,6 @@ const ManageOrders = () => {
     },
   });
 
-  
   const handleOrderStatus = (payment, status) => {
     axiosSecure.patch(`/payments/${payment._id}`, { status }).then((res) => {
       if (res.data.modifiedCount > 0) {
@@ -60,6 +60,9 @@ const ManageOrders = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Manage Orders</title>
+      </Helmet>
       <SectionTitle
         heading={`Total Orders: ${payments.length}`}
         subHeading="At a Glance"
@@ -92,9 +95,10 @@ const ManageOrders = () => {
               >
                 <th className="hidden md:table-cell">{idx + 1}</th>
                 <td className="hidden lg:table-cell">{payment.email}</td>
-                <td className="hidden lg:table-cell">{payment.transactionId}</td>
+                <td className="hidden lg:table-cell">
+                  {payment.transactionId}
+                </td>
                 <td>
-                  
                   {/* User Order List Modal */}
                   <button
                     className="link text-[#D1A054] block"
@@ -105,7 +109,10 @@ const ManageOrders = () => {
                     View Items
                   </button>
 
-                  <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+                  <dialog
+                    id="my_modal_2"
+                    className="modal modal-bottom sm:modal-middle"
+                  >
                     <div className="modal-box ">
                       <h3 className="text-2xl text-center">User Order</h3>
                       <div className="divider"></div>
@@ -119,15 +126,14 @@ const ManageOrders = () => {
                       <button>close</button>
                     </form>
                   </dialog>
-
                 </td>
                 <td className="hidden md:table-cell">${payment.price}</td>
-                <td className="hidden lg:table-cell">{moment(payment.date).format("MMMM Do YYYY, h:mm a")}</td>
+                <td className="hidden lg:table-cell">
+                  {moment(payment.date).format("MMMM Do YYYY, h:mm a")}
+                </td>
                 <td>
                   <select
-                    onChange={(e) =>
-                      handleOrderStatus(payment, e.target.value)
-                    }
+                    onChange={(e) => handleOrderStatus(payment, e.target.value)}
                     value={payment.status}
                     className={`select select-bordered border-[#D1A054] border-2 rounded-md w-full max-w-sm uppercase ${
                       payment.status === "pending" ||

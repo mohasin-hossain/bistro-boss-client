@@ -5,10 +5,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlinePermPhoneMsg } from "react-icons/md";
 import { IoTime } from "react-icons/io5";
 import { IoIosSend } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Contact</title>
+      </Helmet>
       <Cover
         img={ContactPageImg}
         title="Contact Us"

@@ -6,6 +6,7 @@ import { BsMinecart } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ProfileImg from "../../../assets/others/profile.png";
+import { Helmet } from "react-helmet-async";
 
 const UserHome = () => {
   const { user } = useAuth();
@@ -21,6 +22,9 @@ const UserHome = () => {
 
   return (
     <div className="py-12 px-2 md:p-12">
+      <Helmet>
+        <title>Bistro Boss | User Home</title>
+      </Helmet>
       <h3 className="text-3xl">
         Welcome
         <span className="text-orange-500 font-bold">

@@ -4,6 +4,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import { FaUsers } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -68,6 +69,9 @@ const AllUsers = () => {
 
   return (
     <div className="md:px-12">
+      <Helmet>
+        <title>Bistro Boss | All Users</title>
+      </Helmet>
       <SectionTitle
         heading="Manage All Users"
         subHeading="Registered Users"
@@ -95,7 +99,9 @@ const AllUsers = () => {
                   <td>{user.email}</td>
                   <td className="text-center">
                     {user.role === "admin" ? (
-                      <span className="font-bold text-green-500 p-2 bg-green-100 rounded-md">Admin</span>
+                      <span className="font-bold text-green-500 p-2 bg-green-100 rounded-md">
+                        Admin
+                      </span>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { PiSmileySadLight } from "react-icons/pi";
 import moment from "moment";
+import { Helmet } from "react-helmet-async";
 
 const MyBooking = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,6 +20,9 @@ const MyBooking = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | My Bookings</title>
+      </Helmet>
       <SectionTitle
         heading="My Booking"
         subHeading="Excellent Ambience"
@@ -49,8 +53,8 @@ const MyBooking = () => {
                 <td className="hidden lg:table-cell">{booking.name}</td>
                 <td>{booking.menu}</td>
                 <td className="hidden lg:table-cell">{booking.guest}</td>
-                <td >
-                  {booking.date} at {" "}
+                <td>
+                  {booking.date} at{" "}
                   {moment(booking.time, "HH:mm").format("hh:mm A")}
                 </td>
                 <td

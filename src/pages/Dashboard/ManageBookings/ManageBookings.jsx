@@ -6,6 +6,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { Helmet } from "react-helmet-async";
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -93,6 +94,9 @@ const ManageBookings = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Manage Bookings</title>
+      </Helmet>
       <SectionTitle
         heading="Manage All Bookings"
         subHeading="At a glance"
@@ -129,13 +133,16 @@ const ManageBookings = () => {
                 <td className="hidden lg:table-cell">{booking.email}</td>
                 <td>{booking.menu}</td>
                 <td className="hidden lg:table-cell">{booking.guest}</td>
-                <td className="text-xs">{booking.date} at {moment(booking.time, "HH:mm").format("hh:mm A")}</td>
+                <td className="text-xs">
+                  {booking.date} at{" "}
+                  {moment(booking.time, "HH:mm").format("hh:mm A")}
+                </td>
                 <td
-                  className={
-                    `hidden lg:table-cell ${booking.status === "confirmed"
+                  className={`hidden lg:table-cell ${
+                    booking.status === "confirmed"
                       ? "text-green-500 font-bold uppercase"
-                      : "text-red-500 font-semibold uppercase"}`
-                  }
+                      : "text-red-500 font-semibold uppercase"
+                  }`}
                 >
                   {booking.status}
                 </td>

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { IoRocket } from "react-icons/io5";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AddReview = () => {
   const [loading, setLoading] = useState(false);
@@ -68,6 +69,9 @@ const AddReview = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Add Review</title>
+      </Helmet>
       <SectionTitle
         heading="Add a Review"
         subHeading="Help us Improve!"
