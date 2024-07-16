@@ -20,7 +20,7 @@ const Contact = () => {
       ></Cover>
       <SectionTitle heading="Our Location" subHeading="Visit Us"></SectionTitle>
 
-      <div className="max-w-6xl pb-8 px-10 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 font-inter">
+      <div className="max-w-6xl pb-4 px-10 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 font-inter" data-aos="fade-up">
         <div className="border">
           <div className="bg-[#D1A054] p-3">
             <MdOutlinePermPhoneMsg className="text-2xl text-white mx-auto" />
@@ -58,7 +58,7 @@ const Contact = () => {
         subHeading="Send us a message"
       ></SectionTitle>
 
-      <div className="max-w-6xl px-10 mx-auto mb-20">
+      <div className="max-w-6xl px-10 mx-auto mb-20" data-aos="fade-up">
         <form className="bg-[#F3F3F3] p-6 md:p-12">
           <div className="flex md:flex-row flex-col gap-4 mb-2">
             <div className="form-control md:w-1/2">

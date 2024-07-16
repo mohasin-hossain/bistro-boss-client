@@ -3,11 +3,10 @@ import { FaX } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="text-white font-inter">
+    <footer className="text-white font-inter" data-aos="fade-up" data-aos-animation="1500">
       <div className="flex md:flex-row flex-col font-medium text-gray-400">
         <div
           className="bg-[#1F2937] md:w-1/2 flex flex-col items-center p-12 space-y-1 text-sm md:text-base"
-          data-aos="fade-right" data-aos-duration="1500"
         >
           <h3>Contact us</h3>
           <p>+88 123456789</p>
@@ -17,7 +16,6 @@ const Footer = () => {
         </div>
         <div
           className="bg-[#111827] md:w-1/2 flex flex-col items-center p-12 space-y-2"
-          data-aos="fade-left" data-aos-duration="1500"
         >
           <h3>Follow Us</h3>
           <p>Join on social media</p>
