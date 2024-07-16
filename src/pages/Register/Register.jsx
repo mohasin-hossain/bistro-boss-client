@@ -87,26 +87,11 @@ const Register = () => {
       <div className="bg-[#B58130] flex items-center min-h-screen">
         <div className="flex items-center justify-center md:h-[600px] max-w-6xl mx-auto shadow-lg drop-shadow-lg">
           <div className="md:flex items-center justify-center md:h-[600px]">
-            <div className="md:w-1/2 h-full relative">
-              <img
-                className="object-cover w-full h-full"
-                src={RegisterPageImg}
-                alt=""
-              />
-              <div className="absolute left-4 top-4">
-                <Link to="/">
-                  <button className="btn-sm btn btn-outline rounded-none shadow-md text-[#B58130] flex justify-center items-center gap-3 font-bold">
-                    Go Back <HiArrowUturnLeft />
-                  </button>
-                </Link>
-              </div>
-              <div className="absolute inset-0 m-auto w-80 lg:w-2/3 h-1/2 bg-black bg-opacity-30 flex flex-col justify-center items-center">
-                <h2 className="text-6xl font-cinzel text-white font-semibold">
-                  Register
-                </h2>
-              </div>
-            </div>
-            <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
+            <div
+              className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
                 <form
@@ -231,6 +216,30 @@ const Register = () => {
                   </Link>
                 </p>
                 <SocialLogin title="Sign Up With"></SocialLogin>
+              </div>
+            </div>
+
+            <div
+              className="md:w-1/2 h-full relative"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              <img
+                className="object-cover w-full h-full"
+                src={RegisterPageImg}
+                alt=""
+              />
+              <div className="absolute left-4 top-4">
+                <Link to="/">
+                  <button className="btn-sm btn btn-outline rounded-none shadow-md text-[#B58130] flex justify-center items-center gap-3 font-bold">
+                    Go Back <HiArrowUturnLeft />
+                  </button>
+                </Link>
+              </div>
+              <div className="absolute inset-0 m-auto w-80 lg:w-2/3 h-1/2 bg-black bg-opacity-30 flex flex-col justify-center items-center">
+                <h2 className="text-6xl font-cinzel text-white font-semibold">
+                  Register
+                </h2>
               </div>
             </div>
           </div>

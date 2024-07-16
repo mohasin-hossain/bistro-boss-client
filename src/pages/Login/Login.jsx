@@ -60,7 +60,11 @@ const Login = () => {
       <div className="bg-[#B58130] flex items-center min-h-screen">
         <div className="flex items-center justify-center md:h-[600px] max-w-6xl mx-auto shadow-lg drop-shadow-lg">
           <div className="md:flex items-center justify-center md:h-[600px]">
-            <div className="md:w-1/2 h-full relative">
+            <div
+              className="md:w-1/2 h-full relative"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
               <img
                 src={loginPageImg}
                 className="object-cover w-full h-full"
@@ -79,7 +83,11 @@ const Login = () => {
                 </h2>
               </div>
             </div>
-            <div className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image">
+            <div
+              className="md:w-1/2 w-full h-[650px] pb-16 bg-[#F3F3F3] flex justify-center items-center bg-form-image"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
               <div className="w-full h-[650px] px-2 lg:px-12 pt-10">
                 <img className="w-10 h-10 mx-auto" src={Logo} alt="" />
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -131,13 +139,19 @@ const Login = () => {
                       {...register("captcha", { required: true })}
                     />
                     {errors.captcha?.type === "required" && (
-                      <p className="text-red-600 text-xs">Captcha is Required</p>
+                      <p className="text-red-600 text-xs">
+                        Captcha is Required
+                      </p>
                     )}
                     <span className="text-red-600 text-xs">{error}</span>
                   </div>
                   <div className="form-control mt-4">
                     <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
-                     {!loading && <>Login <IoLogInOutline className="text-2xl" /></>}
+                      {!loading && (
+                        <>
+                          Login <IoLogInOutline className="text-2xl" />
+                        </>
+                      )}
                       {loading ? (
                         <span className="loading loading-spinner text-white justify-end"></span>
                       ) : (
