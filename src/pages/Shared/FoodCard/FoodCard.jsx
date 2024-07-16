@@ -78,7 +78,7 @@ const FoodCard = ({ item }) => {
   };
 
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="1500">
       <div className="bg-base-100 shadow-md rounded-none flex flex-col">
         <figure className="relative">
           <img className="w-full" src={image} alt="" />

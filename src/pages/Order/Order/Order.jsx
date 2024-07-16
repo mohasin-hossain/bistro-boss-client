@@ -33,7 +33,7 @@ const Order = () => {
         subTitle="Would you like to try a dish?˝"
       ></Cover>
 
-      <div className="max-w-7xl mx-auto my-8 text-center">
+      <div className="max-w-7xl mx-auto my-8 text-center" data-aos="fade-up">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <div className="font-cinzel font-semibold text-xs md:text-base text-[#B58130]">
           <TabList>
