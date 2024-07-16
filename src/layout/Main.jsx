@@ -14,14 +14,21 @@ const Main = () => {
     location.pathname.includes("register");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    const hasShownLoader = sessionStorage.getItem("hasShownLoader");
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+    if (location.pathname === "/" && !hasShownLoader) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+        sessionStorage.setItem("hasShownLoader", true);
+      }, 2000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      setLoading(false);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     AOS.init();
@@ -34,7 +41,7 @@ const Main = () => {
 
   return (
     <div>
-      {loading ? (
+      {loading && location.pathname === "/" ? (
         <Loader />
       ) : (
         <>
