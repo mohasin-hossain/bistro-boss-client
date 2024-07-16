@@ -3,6 +3,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import Loader from "../pages/Loader/Loader";
 import Footer from "../pages/Shared/Footer/Footer";
 import NavBar from "../pages/Shared/NavBar/NavBar";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Main = () => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +22,10 @@ const Main = () => {
       clearTimeout(timer);
     };
   }, []);
+
+  useEffect(() => {
+    AOS.init();
+  });
 
   // sliding to top on page change
   useLayoutEffect(() => {

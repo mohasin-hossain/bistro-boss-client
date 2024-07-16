@@ -17,7 +17,11 @@ const Cover = ({ img, title, subTitle }) => {
         }}
       >
         <div className="hero-overlay bg-opacity-40 w-11/12 h-3/5 md:w-1/2 md:h-1/2"></div>
-        <div className="hero-content text-white text-center">
+        <div
+          className="hero-content text-white text-center"
+          data-aos="zoom-in"
+          data-aos-duration="800"
+        >
           <div className="max-w-md font-cinzel p-8">
             <h1 className="mb-5 text-3xl md:text-5xl font-bold uppercase">
               {title}

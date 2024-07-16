@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, animation }) => {
   const { name, image, price, recipe } = item;
 
   return (
-    <div className="flex items-center space-x-3">
+    <div className="flex items-center space-x-3" data-aos={animation} >
       <img
         style={{ borderRadius: "0 200px 200px 200px" }}
         className="w-[50px] h-[50px] md:w-[100px] md:h-[100px]"
@@ -28,4 +28,5 @@ export default MenuItem;
 
 MenuItem.propTypes = {
   item: PropTypes.object.isRequired,
+  animation: PropTypes.string.isRequired,
 };
