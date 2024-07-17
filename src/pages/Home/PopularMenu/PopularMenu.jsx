@@ -13,8 +13,12 @@ const PopularMenu = () => {
         subHeading="Customer's Favourite"
       ></SectionTitle>
       <div className="grid lg:grid-cols-2 gap-x-10 gap-y-6 my-8 md:my-20">
-        {popularProducts.map((item) => (
-          <MenuItem key={item._id} item={item}></MenuItem>
+        {popularProducts.map((item, index) => (
+          <MenuItem
+            key={item._id}
+            item={item}
+            animation={index % 2 === 0 ? "fade-right" : "fade-left"}
+          ></MenuItem>
         ))}
       </div>
     </section>

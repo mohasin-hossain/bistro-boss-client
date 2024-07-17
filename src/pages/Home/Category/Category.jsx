@@ -21,11 +21,11 @@ const Category = () => {
 
   return (
     <section>
-      <div className="max-w-7xl mx-auto font-cinzel">
-        <SectionTitle
-          heading={"Order Online"}
-          subHeading={"From 11:00am to 10:00pm"}
-        ></SectionTitle>
+      <SectionTitle
+        heading={"Order Online"}
+        subHeading={"From 11:00am to 10:00pm"}
+      ></SectionTitle>
+      <div className="max-w-7xl mx-auto font-cinzel" data-aos="fade-up">
         <Swiper
           slidesPerView={4}
           spaceBetween={10}

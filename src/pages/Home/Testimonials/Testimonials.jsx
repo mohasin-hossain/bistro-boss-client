@@ -26,32 +26,38 @@ const Testimonials = () => {
         subHeading="What Our Customer's Say"
       ></SectionTitle>
 
-      <Swiper
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Navigation, Autoplay]}
-        className="mySwiper"
-      >
-        {reverseReviews.map((review) => (
-          <SwiperSlide key={review._id}>
-            <div className="px-0 md:px-8 flex flex-col items-center space-y-4">
-              <Rating
-                style={{ maxWidth: 140 }}
-                value={review.rating}
-                readOnly
-              />
-              <p className="font-cinzel font-bold text-sm">{review.menuName}</p>
-              <p className="w-2/3 text-center font-inter text-sm md:text-xl text-gray-600">
-                {review.review}
-              </p>
-              <p className="text-base md:text-2xl text-yellow-500">- {review.name}</p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div data-aos="fade-up">
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          navigation={true}
+          modules={[Navigation, Autoplay]}
+          className="mySwiper"
+        >
+          {reverseReviews.map((review) => (
+            <SwiperSlide key={review._id}>
+              <div className="px-0 md:px-8 flex flex-col items-center space-y-4">
+                <Rating
+                  style={{ maxWidth: 140 }}
+                  value={review.rating}
+                  readOnly
+                />
+                <p className="font-cinzel font-bold text-sm">
+                  {review.menuName}
+                </p>
+                <p className="w-2/3 text-center font-inter text-sm md:text-xl text-gray-600">
+                  {review.review}
+                </p>
+                <p className="text-base md:text-2xl text-yellow-500">
+                  - {review.name}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 };

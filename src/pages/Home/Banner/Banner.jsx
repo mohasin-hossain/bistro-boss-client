@@ -9,8 +9,8 @@ import img6 from "../../../assets/home/06.png";
 
 const Banner = () => {
   return (
-     <div>
-       <Carousel
+    <div>
+      <Carousel
         autoPlay={true}
         stopOnHover={false}
         infiniteLoop={true}
@@ -35,7 +35,7 @@ const Banner = () => {
           <img src={img6} />
         </div>
       </Carousel>
-     </div>
+    </div>
   );
 };
 

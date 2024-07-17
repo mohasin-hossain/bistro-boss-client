@@ -14,12 +14,17 @@ const Main = () => {
     location.pathname.includes("register");
 
   useEffect(() => {
+    AOS.init();
+  });
+
+  useEffect(() => {
     const hasShownLoader = sessionStorage.getItem("hasShownLoader");
 
     if (location.pathname === "/" && !hasShownLoader) {
       const timer = setTimeout(() => {
         setLoading(false);
         sessionStorage.setItem("hasShownLoader", true);
+        AOS.refresh();
       }, 2000);
 
       return () => {
@@ -31,8 +36,10 @@ const Main = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    AOS.init();
-  });
+    if (!loading) {
+      AOS.refresh();
+    }
+  }, [loading, location.pathname]);
 
   // sliding to top on page change
   useLayoutEffect(() => {
