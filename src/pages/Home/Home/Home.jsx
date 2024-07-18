@@ -11,6 +11,7 @@ import { useEffect } from "react";
 
 const Home = () => {
   useEffect(() => {
+    AOS.init();
     AOS.refresh();
   }, []);
 

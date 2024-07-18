@@ -14,17 +14,12 @@ const Main = () => {
     location.pathname.includes("register");
 
   useEffect(() => {
-    AOS.init();
-  });
-
-  useEffect(() => {
     const hasShownLoader = sessionStorage.getItem("hasShownLoader");
 
     if (location.pathname === "/" && !hasShownLoader) {
       const timer = setTimeout(() => {
         setLoading(false);
         sessionStorage.setItem("hasShownLoader", true);
-        AOS.refresh();
       }, 2000);
 
       return () => {
@@ -36,10 +31,13 @@ const Main = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!loading) {
-      AOS.refresh();
-    }
-  }, [loading, location.pathname]);
+    AOS.init();
+  });
+
+  // Refresh AOS on every route change
+  useLayoutEffect(() => {
+    AOS.refresh();
+  }, [location.pathname]);
 
   // sliding to top on page change
   useLayoutEffect(() => {
@@ -53,7 +51,7 @@ const Main = () => {
       ) : (
         <>
           {noHeaderFooter || <NavBar></NavBar>}
-          <Outlet></Outlet>
+          <Outlet key={location.pathname}></Outlet>
           {noHeaderFooter || <Footer></Footer>}
         </>
       )}
