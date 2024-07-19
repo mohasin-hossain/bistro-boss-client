@@ -8,6 +8,10 @@ import { IoIosSend } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
+
+  // TODO: Send email to the owner from the user using the form
+
+
   return (
     <div>
       <Helmet>

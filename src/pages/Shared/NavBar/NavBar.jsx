@@ -16,6 +16,7 @@ const NavBar = () => {
   const [cart] = useCart();
   const [isAdmin] = useAdmin();
 
+  // Signout User
   const handleSignOut = () => {
     logOutUser()
       .then(() => {})

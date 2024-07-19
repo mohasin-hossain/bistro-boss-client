@@ -58,6 +58,7 @@ const AddItems = () => {
     }
   };
 
+  // Image previewer 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
