@@ -178,13 +178,13 @@ const Register = () => {
                     )}
                     {errors.password?.type === "minLength" && (
                       <p className="text-red-600 text-xs">
-                        Password Must be atleast 6 characters long
+                        Password Must be 8 characters long
                       </p>
                     )}
                     {errors.password?.type === "pattern" && (
                       <p className="text-red-600 text-xs">
                         Password must include 1 uppercase, 1 lowercase, 1
-                        special character
+                        special character, 1 number.
                       </p>
                     )}
                   </div>
