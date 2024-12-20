@@ -17,6 +17,7 @@ import Logo from "../assets/Logo Bistro Boss.png";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { TfiMenuAlt } from "react-icons/tfi";
+import { MdOutlineMessage } from "react-icons/md";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -102,6 +103,12 @@ const Dashboard = () => {
                     <NavLink to="/dashboard/manageOrders">
                       <GiWallet className="text-2xl" />
                       Manage Orders
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard/manageMessages">
+                      <MdOutlineMessage className="text-2xl" />
+                      Manage Messages
                     </NavLink>
                   </li>
                   <li>

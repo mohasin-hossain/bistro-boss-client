@@ -24,6 +24,7 @@ import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
+import ManageMessages from "../pages/Dashboard/ManageMessages/ManageMessages";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageOrders></ManageOrders>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageMessages",
+        element: (
+          <AdminRoute>
+            <ManageMessages></ManageMessages>
           </AdminRoute>
         ),
       },

@@ -9,6 +9,8 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import RegisterPageImg from "../../assets/home/banner.jpg";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import Logo from "../../assets/logo.png";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,6 +18,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -24,8 +27,11 @@ const Register = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const password = watch("password"); 
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -140,12 +146,12 @@ const Register = () => {
                       <p className="text-red-600 text-xs">Email is required</p>
                     )}
                   </div>
-                  <div className="form-control">
+                  <div className="form-control relative">
                     <label className="label">
                       <span className="label-text font-bold">Password*</span>
                     </label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
                       {...register("password", {
                         required: true,
@@ -155,6 +161,16 @@ const Register = () => {
                       })}
                       className="input rounded-none"
                     />
+                    {password ? (
+                      <button
+                        className="text-2xl text-[#B58130] absolute right-2 top-12"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaRegEyeSlash /> : <IoEyeOutline />}
+                      </button>
+                    ) : (
+                      ""
+                    )}
                     {errors.password?.type === "required" && (
                       <p className="text-red-600 text-xs">
                         Password is required

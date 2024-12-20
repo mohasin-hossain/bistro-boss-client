@@ -10,14 +10,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
-import { IoLogInOutline } from "react-icons/io5";
+import { IoEyeOutline, IoLogInOutline } from "react-icons/io5";
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import Logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { signInUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,8 +27,11 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const password = watch("password");
 
   const from = location.state?.from?.pathname || "/";
 
@@ -108,19 +113,29 @@ const Login = () => {
                       <p className="text-red-600 text-xs">Email is required</p>
                     )}
                   </div>
-                  <div className="form-control">
+                  <div className="form-control relative">
                     <label className="label">
                       <span className="label-text font-bold font-inter">
                         Password
                       </span>
                     </label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="Type here"
                       name="password"
                       className="input rounded-none"
                       {...register("password", { required: true })}
                     />
+                    {password ? (
+                      <button
+                        className="text-2xl text-[#B58130] absolute right-2 top-12"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaRegEyeSlash /> : <IoEyeOutline />}
+                      </button>
+                    ) : (
+                      ""
+                    )}
                     {errors.password?.type === "required" && (
                       <p className="text-red-600 text-xs">
                         Password is required
