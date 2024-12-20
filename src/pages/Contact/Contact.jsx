@@ -6,11 +6,41 @@ import { MdOutlinePermPhoneMsg } from "react-icons/md";
 import { IoTime } from "react-icons/io5";
 import { IoIosSend } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
-  // TODO: Send email to the owner from the user using the form
 
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const onSubmit = (data) => {
+    setLoading(true);
+
+    const message = {
+      name: data.name || user.displayName,
+      email: data.email || user.email,
+      phone: data.phone,
+      message: data.message,
+    };
+
+    axiosSecure.post(`/messages`, message).then((res) => {
+      if (res.data.insertedId) {
+        reset();
+        setLoading(false);
+        Swal.fire({
+          title: "Message Sent!",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -24,7 +54,10 @@ const Contact = () => {
       ></Cover>
       <SectionTitle heading="Our Location" subHeading="Visit Us"></SectionTitle>
 
-      <div className="max-w-6xl pb-4 px-10 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 font-inter" data-aos="fade-up">
+      <div
+        className="max-w-6xl pb-4 px-10 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 font-inter"
+        data-aos="fade-up"
+      >
         <div className="border">
           <div className="bg-[#D1A054] p-3">
             <MdOutlinePermPhoneMsg className="text-2xl text-white mx-auto" />
@@ -63,7 +96,10 @@ const Contact = () => {
       ></SectionTitle>
 
       <div className="max-w-6xl px-10 mx-auto mb-20" data-aos="fade-up">
-        <form className="bg-[#F3F3F3] p-6 md:p-12">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-[#F3F3F3] p-6 md:p-12"
+        >
           <div className="flex md:flex-row flex-col gap-4 mb-2">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -74,6 +110,8 @@ const Contact = () => {
                 placeholder="Enter your name"
                 name="name"
                 className="input text-base"
+                defaultValue={user?.displayName}
+                {...register("name")}
                 required
               />
             </div>
@@ -85,7 +123,9 @@ const Contact = () => {
                 type="email"
                 placeholder="Enter your email"
                 name="email"
+                defaultValue={user?.email}
                 className="input text-base"
+                {...register("email")}
                 required
               />
             </div>
@@ -96,12 +136,14 @@ const Contact = () => {
               <span className="label-text font-semibold">Phone*</span>
             </label>
             <input
-              type="email"
+              type="number"
               placeholder="Enter your phone number"
               name="phone"
               className="input text-base"
+              {...register("phone", { required: true })}
               required
             />
+            {errors.phone && <span>Phone Number is required</span>}
           </div>
 
           <div>
@@ -113,14 +155,22 @@ const Contact = () => {
                 name="message"
                 className="textarea h-48 text-base"
                 placeholder="Write your message here"
+                {...register("message", { required: true })}
               ></textarea>
+              {errors.message && <span className="text-red-400">Please enter your message.</span>}
             </label>
           </div>
 
           <div className="flex justify-center mt-8">
             <button className="btn rounded-none bg-gradient-to-r from-[#835D23] to-[#B58130] text-white w-60 font-cinzel">
-              Send Message
-              <IoIosSend className="text-2xl"></IoIosSend>
+              {loading ? (
+                <span className="loading loading-spinner text-white justify-end"></span>
+              ) : (
+                <>
+                  Send Message
+                  <IoIosSend className="text-2xl"></IoIosSend>
+                </>
+              )}
             </button>
           </div>
         </form>
