@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'featured-image': 'url(./src/assets/home/featured.jpg)',
-        "form-image": 'url(./src/assets/others/authentication.png)',
+        'featured-image': 'url(/images/home/featured.jpg)',
+        'form-image': 'url(/images/others/authentication.png)',
       },
       fontFamily: {
         cinzel: '"Cinzel", serif',
