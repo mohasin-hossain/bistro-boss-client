@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import SectionTitle from "../../../components/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
+import { useEffect, useState } from "react";
+import { Autoplay, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SectionTitle from "../../../components/SectionTitle";
 
+import "@smastrom/react-rating/style.css";
 import "swiper/css";
 import "swiper/css/navigation";
-import "@smastrom/react-rating/style.css";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("https://bistro-boss-server-ruby-six.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

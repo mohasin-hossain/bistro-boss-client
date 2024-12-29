@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import Contact from "../pages/Contact/Contact";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
 import AddReview from "../pages/Dashboard/AddReview/AddReview";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
@@ -8,6 +9,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
 import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
+import ManageMessages from "../pages/Dashboard/ManageMessages/ManageMessages";
 import ManageOrders from "../pages/Dashboard/ManageOrders/ManageOrders";
 import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
@@ -18,13 +20,11 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
+import NotFound from "../pages/NotFound/NotFound";
 import Order from "../pages/Order/Order/Order";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
-import Contact from "../pages/Contact/Contact";
-import NotFound from "../pages/NotFound/NotFound";
-import ManageMessages from "../pages/Dashboard/ManageMessages/ManageMessages";
 
 const router = createBrowserRouter([
   {
@@ -161,7 +161,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/menu/${params.id}`),
+          fetch(`https://bistro-boss-server-ruby-six.vercel.app/menu/${params.id}`),
       },
     ],
   },
