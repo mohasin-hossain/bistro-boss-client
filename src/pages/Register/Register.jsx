@@ -31,7 +31,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const password = watch("password"); 
+  const password = watch("password");
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -164,7 +164,10 @@ const Register = () => {
                     {password ? (
                       <button
                         className="text-2xl text-[#B58130] absolute right-2 top-12"
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={(e) => {
+                          e.preventDefault(); // Prevent any default behavior
+                          setShowPassword(!showPassword);
+                        }}
                       >
                         {showPassword ? <FaRegEyeSlash /> : <IoEyeOutline />}
                       </button>
@@ -215,7 +218,10 @@ const Register = () => {
                     </div>
                   </div>
                   <div className="form-control mt-2">
-                    <button type="submit" className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
+                    <button
+                      type="submit"
+                      className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl"
+                    >
                       {!loading && "Register"}
                       {loading ? (
                         <span className="loading loading-spinner text-white justify-end"></span>
