@@ -215,7 +215,7 @@ const Register = () => {
                     </div>
                   </div>
                   <div className="form-control mt-2">
-                    <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
+                    <button type="submit" className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] text-white rounded-none font-cinzel text-xl">
                       {!loading && "Register"}
                       {loading ? (
                         <span className="loading loading-spinner text-white justify-end"></span>
