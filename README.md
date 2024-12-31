@@ -63,7 +63,8 @@ Welcome to **Bistro Boss Restaurant**, a comprehensive restaurant web applicatio
   - Firebase Authentication for managing user authentication  
 
 - **Deployment**:  
-  - Vercel
+  - Frontend : Vercel
+  - Backend : Railway
 
 
 ---

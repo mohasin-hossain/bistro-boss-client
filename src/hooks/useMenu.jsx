@@ -8,7 +8,7 @@ const useMenu = () => {
   // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
-  //   fetch("https://bistro-boss-server-production-5043.up.railway.app//menu")
+  //   fetch("https://bistro-boss-server-production-5043.up.railway.app/menu")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenu(data);
